@@ -1,6 +1,37 @@
 // Default Values
 // =============================================================================
 
+@font-face {
+    font-family: 'QuicksandBold';
+    src: url('../fonts/quicksand/Quicksand_Bold-webfont.eot');
+    src: url('../fonts/quicksand/Quicksand_Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/quicksand/Quicksand_Bold-webfont.woff') format('woff'),
+         url('../fonts/quicksand/Quicksand_Bold-webfont.ttf') format('truetype'),
+         url('../fonts/quicksand/Quicksand_Bold-webfont.svg#QuicksandBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'QuicksandBook';
+    src: url('../fonts/quicksand/Quicksand_Book-webfont.eot');
+    src: url('../fonts/quicksand/Quicksand_Book-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/quicksand/Quicksand_Book-webfont.woff') format('woff'),
+         url('../fonts/quicksand/Quicksand_Book-webfont.ttf') format('truetype'),
+         url('../fonts/quicksand/Quicksand_Book-webfont.svg#QuicksandBook') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'MisoRegular';
+    src: url('../fonts/miso/miso-regular-webfont.eot');
+    src: url('../fonts/miso/miso-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/miso/miso-regular-webfont.woff') format('woff'),
+         url('../fonts/miso/miso-regular-webfont.ttf') format('truetype'),
+         url('../fonts/miso/miso-regular-webfont.svg#MisoRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 // Animation
 $default-transition-duration: 0.3s;
 $default-transition-function: ease;
@@ -9,7 +40,7 @@ $default-transition-function: ease;
 $serif-regular: 400;
 $serif-bold: 700;
 .serif {
-    font-family: "adelle-1", "adelle-2", Cambria, Times, serif;
+    font-family: Cambria, Times, serif;
 }
 
 .serif-regular {
@@ -24,22 +55,31 @@ $serif-bold: 700;
 $sans-light: 300;
 $sans-bold: 700;
 .sans {
-    font-family: "facitweb-1", "facitweb-2", Helvetica, Arial, sans-serif;
+    font-family: QuicksandBook, Helvetica, Arial, sans-serif;
 }
 .sans-light {
     @extend .sans;
+    font-family: QuicksandBook, Helvetica, Arial, sans-serif;
     font-weight: $sans-light;
 }
 .sans-bold {
     @extend .sans;
-    font-weight: $sans-bold;
+    font-family: QuicksandBold, Helvetica, Arial, sans-serif;
+    font-weight: $sans-light;
+}
+.sans-hd {
+    font-family: MisoRegular, Helvetica, Arial, sans-serif;
+    letter-spacing: -2px;
 }
 
 // Colors
-$dark: #0E0E0E;
-$altdark: #2f3927;
-$background: #8eb96b;
-$light: #E3EDD7;
+$red: #C32F24;
+$ltblue: #3399cc;
+$background: #f3f3f2;
+$ltgray: #999999;
+$dark: #404040;
+$altdark: #456097;
+$light: #F3F3F2;
 $highlight: #1286bb;
 $alert: #ebed89;
 $error: #530306;
@@ -49,15 +89,13 @@ $error: #530306;
 // =============================================================================
 
 body {
-    /* For sucky browsers that don't grok multibackgrounds */
-    background: url(../img/bg.png) repeat left top $background;
-    /* For awesome browsers. */
-    background: url(../img/gradient_fade_bg.png) repeat-x left top, url(../img/bg.png) repeat left top $background;
+    background: $background;
     height: 100%;
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
     font-size: 100%;
-    @extend .serif;
+    @extend .sans;
+    width: 932px;
 }
 
 a {
@@ -111,7 +149,8 @@ button {
         }
     }
 }
-
-li {
-    color:$altdark;
+hr {
+    background: url(../img/sprites.png) -71px -124px;
+    clear: both;
+    height: 14px;
 }

@@ -4,18 +4,36 @@
 {% load boxes_tags %}
 {% load biblion_tags %}
 
-{% block tagline %}<h4>Three days of talks, two days of sprints, <br>one event you won't want to miss.</h4>{% endblock %}
-
 {% block body_class %}home{% endblock %}
+
+{% block tagline %}
+    <section id="tagline">
+        <h1>Join us at the <strong>Hyatt Regency Crystal City, Washington D.C.</strong></h1>
+    </section>
+    <div id="date_blocks">
+        <div class="dateblock" id="tutorials_dateblock">
+            <h2>Tutorials</h2>
+            <h3>Sept. 3<sup>rd</sup></h3>
+        </div>
+        <div class="dateblock" id="talks_dateblock">
+            <h2>Conference</h2>
+            <h3>Sept. 4<sup>th</sup>&ndash;6<sup>th</sup></h3>
+        </div>
+        <div class="dateblock" id="sprints_dateblock">
+            <h2>Sprints</h2>
+            <h3>Sept. 7<sup>th</sup>&ndash;9<sup>th</sup></h3>
+        </div>
+    </div>
+{% endblock %}
+
 {% block body %}
-    {% comment %}
     <section class="box first">
         {% box "tickets" %}
     </section>
     <section class="box">
         {% box "sponsors" %}
     </section>
-    {% endcomment %}
+    <hr />
     <section class="homepage_blog">
     <h1>Blog</h1>
     {% comment %}
@@ -29,14 +47,14 @@
             <p>No blog posts have been published.</p>
         {% endif %}
     {% endcomment %}
-</section>
+    </section>
 {% endblock %}
 
 {% block vignettes %}
     <section class="vignettes">
         {% for person in ponypeople %}
             <a class="framed" href="http://www.flickr.com/photos/bastispicks/sets/72157624936586134">
-            <img width="265" height="199" src="/site_media/static/img/people/{{ person }}.jpg"><p>by <em>Sebastian Hillig</em></p></a>
+            <img width="265" height="199" src="{{ STATIC_URL }}img/people/{{ person }}.jpg"><p>by <em>Sebastian Hillig</em></p></a>
         {% endfor %}
     </section>
 {% endblock %}
