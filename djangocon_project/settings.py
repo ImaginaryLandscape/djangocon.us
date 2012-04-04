@@ -107,6 +107,7 @@ MIDDLEWARE_CLASSES = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django_openid.consumer.SessionConsumer",
     "django.contrib.messages.middleware.MessageMiddleware",
+    "django.contrib.flatpages.middleware.FlatpageFallbackMiddleware",
     "pinax.apps.account.middleware.LocaleMiddleware",
     "pinax.middleware.security.HideSensistiveFieldsMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
@@ -142,6 +143,7 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "django.contrib.messages",
     "django.contrib.humanize",
+    "django.contrib.flatpages",
     
     "pinax.templatetags",
     
@@ -194,6 +196,14 @@ ACCOUNT_UNIQUE_EMAIL = EMAIL_CONFIRMATION_UNIQUE_EMAIL = False
 AUTHENTICATION_BACKENDS = [
     "pinax.apps.account.auth_backends.AuthenticationBackend",
 ]
+
+MARKITUP_AUTO_PREVIEW = True
+MARKITUP_SET = "markitup/sets/markdown-custom"
+MARKITUP_SKIN = "markitup/skins/simple"
+#MARKITUP_FILTER = ("wiki.markdown_parser.parse", {})
+#MARKITUP_FILTER = ("wiki.markdown_parser", {})
+MARKITUP_FILTER = ('django.contrib.markup.templatetags.markup.textile', {})
+MARKITUP_MEDIA_URL = STATIC_URL
 
 LOGIN_URL = "/account/login/" # @@@ any way this can be a url name?
 LOGIN_REDIRECT_URLNAME = "what_next"
