@@ -1,10 +1,11 @@
 {% extends "theme_base.html" %}
 
-{% load metron_tags %}
-{% load i18n %}
+{% load metron_tags compress i18n %}
 
 {% block extra_head_base %}
-    <link href="{{ STATIC_URL }}css/screen.css" rel="stylesheet" type="text/css" />
+{% compress css %}  
+    <link type="text/x-scss" rel="stylesheet" href="{{ STATIC_URL }}sass/screen.scss">
+{% endcompress %}
     <script src="{{ STATIC_URL }}js/modernizr-1.7.min.js"></script>
     {% block extra_head %}{% endblock %}
 {% endblock %}
@@ -23,8 +24,7 @@
     {% block tagline %}{% endblock %}
     <section id="main_content">
         {% include "_messages.html" %}
-        {% block body %}
-        {% endblock %}
+        {% block body %}{% block content %}{% endblock %}{% endblock %}
     </section>
 {% endblock %}
 

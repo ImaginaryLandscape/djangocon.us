@@ -5,6 +5,7 @@ import os.path
 import posixpath
 
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
+DEPLOYMENT_ROOT = os.path.join(PROJECT_ROOT, '..', '..', '..')
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -15,6 +16,20 @@ SERVE_MEDIA = DEBUG
 # django-compressor is turned off by default due to deployment overhead for
 # most users. See <URL> for more information
 COMPRESS = False
+
+COMPRESS_ENABLED = True
+COMPRESS_OUTPUT_DIR = ''
+COMPRESS_PRECOMPILERS = (
+    ('text/x-sass', '/usr/bin/sass {infile} {outfile}'),
+    ('text/x-scss', '/usr/bin/sass --scss {infile} {outfile}'),
+)
+COMPRESS_CSS_FILTERS = [
+    'compressor.filters.cssmin.CSSMinFilter'
+]
+COMPRESS_JS_FILTERS = [
+    'compressor.filters.jsmin.JSMinFilter'
+]
+
 
 INTERNAL_IPS = [
     "127.0.0.1",
@@ -54,42 +69,46 @@ SITE_ID = 1
 # to load the internationalization machinery.
 USE_I18N = False
 
+ugettext = lambda s: s
+
+LANGUAGES = (
+    ('en', u'English'),
+)
+
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = os.path.join(PROJECT_ROOT, "site_media", "media")
+MEDIA_ROOT = os.path.join(DEPLOYMENT_ROOT, 'htdocs', 'media')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash if there is a path component (optional in other cases).
-# Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = "/site_media/media/"
+# trailing slash.
+# Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory that holds static files like app media.
 # Example: "/home/media/media.lawrence.com/apps/"
-STATIC_ROOT = os.path.join(PROJECT_ROOT, "site_media", "static")
+STATIC_ROOT = os.path.join(DEPLOYMENT_ROOT, "htdocs", "static")
 
 # URL that handles the static files like app media.
 # Example: "http://media.lawrence.com"
-STATIC_URL = "/site_media/static/"
+STATIC_URL = "/static/"
 
-# Additional directories which hold static files
-STATICFILES_DIRS = [
-    os.path.join(PROJECT_ROOT, "static"),
-]
+# Additional locations of static files
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static'),
+)
 
-STATICFILES_FINDERS = [
-    "staticfiles.finders.FileSystemFinder",
-    "staticfiles.finders.AppDirectoriesFinder",
-    "staticfiles.finders.LegacyAppDirectoriesFinder",
-    "compressor.finders.CompressorFinder",
-]
+# List of finder classes that know how to find static files in
+# various locations.
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+)
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
 ADMIN_MEDIA_PREFIX = posixpath.join(STATIC_URL, "admin/")
-
-# Subdirectory of COMPRESS_ROOT to store the cached media files in
-COMPRESS_OUTPUT_DIR = "cache"
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = "2(e@(*+ykqa_)%cl-rzw6#4ah2by=d=f^+l9s1@^jlpnfuqp%e"
@@ -124,15 +143,22 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     "django.core.context_processors.debug",
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
+    "django.core.context_processors.static",
     "django.core.context_processors.request",
     "django.contrib.messages.context_processors.messages",
-    
-    "staticfiles.context_processors.static",
-    
+
+    'photologueext.context_processors.media',
+
     "pinax.core.context_processors.pinax_settings",
-    
+
     "pinax.apps.account.context_processors.account",
 ]
+
+FILE_UPLOAD_HANDLERS = (
+    'photologueext.uploadhandler.UploadProgressCachedHandler',
+    'django.core.files.uploadhandler.MemoryFileUploadHandler',
+    'django.core.files.uploadhandler.TemporaryFileUploadHandler',
+)
 
 INSTALLED_APPS = [
     # Django
@@ -144,14 +170,14 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.humanize",
     "django.contrib.flatpages",
-    
+    'django.contrib.staticfiles',
+
     "pinax.templatetags",
-    
+
     # theme
     "pinax_theme_bootstrap",
-    
+
     # external
-    "staticfiles",
     "compressor",
     "debug_toolbar",
     "mailer",
@@ -162,19 +188,21 @@ INSTALLED_APPS = [
     "boxes",
     "sorl.thumbnail",
     "metron",
-    "gunicorn",    
-    
+    "gunicorn",
+    "photologueext",
+    "photologue",
+
     # Pinax
     "pinax.apps.account",
     "pinax.apps.signup_codes",
-    
+
     # symposion
     "symposion.proposals",
     "symposion.speakers",
     "symposion.sponsors",
     "symposion.review",
     "symposion.schedule",
-    
+
     # project
     "about",
 ]
@@ -196,6 +224,8 @@ ACCOUNT_UNIQUE_EMAIL = EMAIL_CONFIRMATION_UNIQUE_EMAIL = False
 AUTHENTICATION_BACKENDS = [
     "pinax.apps.account.auth_backends.AuthenticationBackend",
 ]
+
+REDIS_PARAMS = dict(host="127.0.0.1")
 
 MARKITUP_AUTO_PREVIEW = True
 MARKITUP_SET = "markitup/sets/markdown-custom"

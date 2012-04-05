@@ -21,4 +21,5 @@ Pygments==1.4
 icalendar==1.2
 django-boxes==1.0b1.dev1005
 
--e git+git://github.com/pinax/symposion.git#egg=symposion
+# Doesn't work.. no setup.py file
+# -e git+git://github.com/pinax/symposion.git#egg=symposion
