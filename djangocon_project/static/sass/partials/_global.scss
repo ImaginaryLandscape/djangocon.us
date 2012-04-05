@@ -1,0 +1,157 @@
+// Default Values
+// =============================================================================
+
+@font-face {
+    font-family: 'QuicksandBold';
+    src: url('../fonts/quicksand/Quicksand_Bold-webfont.eot');
+    src: url('../fonts/quicksand/Quicksand_Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/quicksand/Quicksand_Bold-webfont.woff') format('woff'),
+         url('../fonts/quicksand/Quicksand_Bold-webfont.ttf') format('truetype'),
+         url('../fonts/quicksand/Quicksand_Bold-webfont.svg#QuicksandBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'QuicksandBook';
+    src: url('../fonts/quicksand/Quicksand_Book-webfont.eot');
+    src: url('../fonts/quicksand/Quicksand_Book-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/quicksand/Quicksand_Book-webfont.woff') format('woff'),
+         url('../fonts/quicksand/Quicksand_Book-webfont.ttf') format('truetype'),
+         url('../fonts/quicksand/Quicksand_Book-webfont.svg#QuicksandBook') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'MisoRegular';
+    src: url('../fonts/miso/miso-regular-webfont.eot');
+    src: url('../fonts/miso/miso-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/miso/miso-regular-webfont.woff') format('woff'),
+         url('../fonts/miso/miso-regular-webfont.ttf') format('truetype'),
+         url('../fonts/miso/miso-regular-webfont.svg#MisoRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+// Animation
+$default-transition: .3s ease;
+
+@mixin columns($num) {
+}
+
+// Typography
+$serif-regular: 400;
+$serif-bold: 700;
+.serif {
+    font-family: Cambria, Times, serif;
+}
+
+.serif-regular {
+    @extend .serif;
+    font-weight: $serif-regular;
+}
+.serif-bold {
+    @extend .serif;
+    font-weight: $serif-bold;
+}
+
+$sans-light: 300;
+$sans-bold: 700;
+.sans {
+    font-family: QuicksandBook, Helvetica, Arial, sans-serif;
+}
+.sans-light {
+    @extend .sans;
+    font-family: QuicksandBook, Helvetica, Arial, sans-serif;
+    font-weight: $sans-light;
+}
+.sans-bold {
+    @extend .sans;
+    font-family: QuicksandBold, Helvetica, Arial, sans-serif;
+    font-weight: $sans-light;
+}
+.sans-hd {
+    font-family: MisoRegular, Helvetica, Arial, sans-serif;
+    letter-spacing: -2px;
+}
+
+// Colors
+$red: #C32F24;
+$ltblue: #3399cc;
+$background: #f3f3f2;
+$ltgray: #999999;
+$dark: #404040;
+$altdark: #456097;
+$light: #F3F3F2;
+$highlight: #1286bb;
+$alert: #ebed89;
+$error: #530306;
+
+// Default Styles
+// These are applicable to all layouts.
+// =============================================================================
+
+body {
+    background: $background;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0;
+    font-size: 100%;
+    @extend .sans;
+    width: 932px;
+}
+
+a {
+    color: $altdark;
+    font-weight: bold;
+    @include transition($default-transition);
+    text-decoration: none;
+    &:hover {
+        color: $highlight;
+        text-decoration: underline;
+    }
+}
+
+button {
+    border: 0;
+    background: $dark url(../img/button_overlay.png) repeat-x;
+    padding: 8px 10px;
+    color: white;
+    text-decoration: none;
+    @extend .sans-bold;
+    font-size: 16px;
+    line-height: 1em;
+    letter-spacing: 0.1em;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    // for stupid browsers
+    -moz-box-shadow: 0 1px 3px #999;
+    -webkit-box-shadow: 0 1px 3px #999;
+    text-shadow: 0 -1px 1px #222;
+    border-bottom: 1px solid #222;
+    // for smart browsers
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+    border-bottom: 1px solid rgba(0,0,0,0.25);
+    cursor: pointer;
+    text-transform: uppercase;
+    @include transition($default-transition);
+    &:hover {
+        background-color: $altdark;
+    }
+    &:active {
+        top: 1px;
+    }
+    &:disabled {
+        background-color: #666;
+        &:active, &:hover {
+            top: 0;
+            cursor: default;
+        }
+    }
+}
+hr {
+    background: url(../img/sprites.png) -71px -124px;
+    clear: both;
+    height: 14px;
+}
