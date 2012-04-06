@@ -2,12 +2,10 @@
 
 {% load metron_tags compress i18n %}
 
-{% block extra_head_base %}
+{% block style_base %}
 {% compress css %}  
-    <link type="text/x-scss" rel="stylesheet" href="{{ STATIC_URL }}sass/screen.scss">
+    <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}css/djangocon.less">
 {% endcompress %}
-    <script src="{{ STATIC_URL }}js/modernizr-1.7.min.js"></script>
-    {% block extra_head %}{% endblock %}
 {% endblock %}
 
 {% block topbar_base %}{% endblock %}

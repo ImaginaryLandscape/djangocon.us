@@ -3,15 +3,6 @@ jQuery.fn.autoscroll = function() {
 }
 
 $(function() {
-    $(".homepage_blog .teaser").hide().parent().hoverIntent({
-        over: function(){
-            $(this).children('.teaser').slideDown();
-        }, 
-        out: function(){},
-        interval: 200
-    });
-
-
     $(".sponsors .row article:last-child").addClass('last');
     $(".sponsors header").append('<h2 id="sponsor-hd"></h2>');
     var hd = $("#sponsor-hd");

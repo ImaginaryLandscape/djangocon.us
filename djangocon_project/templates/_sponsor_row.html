@@ -1,0 +1,11 @@
+{% load thumbnail %}
+<div class="row">
+  {% for sponsor in sponsors %}
+    {% if forloop.counter|divisibleby:5 %}</div>
+    <div class="row">{% endif %}
+      <article class="sponsor">
+        <a href="{{ sponsor.external_url }}">{% thumbnail sponsor.website_logo "180x140" as im %}<img src="{{ im.url }}" alt="{{ sponsor.name }}"/>{% endthumbnail %}</a>
+        <span class="sponsor-level">{{ sponsor.level }}</span>
+      </article>
+  {% endfor %}
+</div>

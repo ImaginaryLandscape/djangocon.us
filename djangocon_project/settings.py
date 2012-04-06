@@ -15,13 +15,14 @@ SERVE_MEDIA = DEBUG
 
 # django-compressor is turned off by default due to deployment overhead for
 # most users. See <URL> for more information
-COMPRESS = False
+#COMPRESS = False
 
 COMPRESS_ENABLED = True
 COMPRESS_OUTPUT_DIR = ''
 COMPRESS_PRECOMPILERS = (
     ('text/x-sass', '/usr/bin/sass {infile} {outfile}'),
     ('text/x-scss', '/usr/bin/sass --scss {infile} {outfile}'),
+    ('text/less', 'lessc {infile} {outfile}'),
 )
 COMPRESS_CSS_FILTERS = [
     'compressor.filters.cssmin.CSSMinFilter'
@@ -100,9 +101,10 @@ STATICFILES_DIRS = (
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder',
+    "staticfiles.finders.FileSystemFinder",
+    "staticfiles.finders.AppDirectoriesFinder",
+    "staticfiles.finders.LegacyAppDirectoriesFinder",
+    "compressor.finders.CompressorFinder",
 )
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
@@ -170,7 +172,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.humanize",
     "django.contrib.flatpages",
-    'django.contrib.staticfiles',
+    # 'django.contrib.staticfiles',
 
     "pinax.templatetags",
 
@@ -191,12 +193,14 @@ INSTALLED_APPS = [
     "gunicorn",
     "photologueext",
     "photologue",
+    "staticfiles",
 
     # Pinax
     "pinax.apps.account",
     "pinax.apps.signup_codes",
 
     # symposion
+    "symposion.conference",
     "symposion.proposals",
     "symposion.speakers",
     "symposion.sponsors",
