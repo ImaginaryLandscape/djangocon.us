@@ -203,12 +203,12 @@ INSTALLED_APPS = [
     "symposion.conference",
     "symposion.proposals",
     "symposion.speakers",
-    "symposion.sponsors",
     "symposion.review",
     "symposion.schedule",
 
     # project
     "about",
+    "sponsors", #custom project version
 ]
 
 FIXTURE_DIRS = [

@@ -1,6 +1,6 @@
 {% extends "theme_base.html" %}
 
-{% load metron_tags compress i18n %}
+{% load metron_tags compress i18n sponsors_tags thumbnail %}
 
 {% block style_base %}
 {% compress css %}  
@@ -27,10 +27,25 @@
 {% endblock %}
 
 {% block footer %}
-<hr />
-<footer id="page_footer">
-    {% include "_footer.html" %}
-</footer>
+    <hr />
+    <footer id="page_footer">
+        {% block sponsor_list %}
+        {% sponsors "*" as sponsors %}
+        {% if sponsors %}
+            <section id="page_sponsors">
+                <h3>Sponsors</h3>
+                <div>
+                {% for sponsor in sponsors %}
+                {% if forloop.counter|divisibleby:9 %}</div><div>{% endif %}
+                    <a href="{{ sponsor.external_url }}">{% thumbnail sponsor.website_logo "112x70" as im %}<img src="{{ im.url }}" alt="{{ sponsor.name }}"/>{% endthumbnail %}</a>
+                {% endfor %}
+                </div>
+            </section>
+        {% endif %}
+        <hr />
+        {% endblock %}
+        {% include "_footer.html" %}
+    </footer>
 {% endblock %}
 
 {% block extra_body_base %}
