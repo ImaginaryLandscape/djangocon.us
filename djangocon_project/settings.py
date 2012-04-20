@@ -187,13 +187,14 @@ INSTALLED_APPS = [
     "timezones",
     "emailconfirmation",
     "biblion",
-    "boxes",
     "sorl.thumbnail",
     "metron",
     "gunicorn",
     "photologueext",
     "photologue",
     "staticfiles",
+    "uni_form",
+    "ajax_validation",
 
     # Pinax
     "pinax.apps.account",
@@ -207,7 +208,6 @@ INSTALLED_APPS = [
     "symposion.schedule",
 
     # project
-    "about",
     "sponsors", #custom project version
 ]
 
@@ -218,6 +218,10 @@ FIXTURE_DIRS = [
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 
 EMAIL_BACKEND = "mailer.backend.DbBackend"
+
+PHOTOLOGUEEXT_DISABLE_WATERMARKS = True
+PHOTOLOGUEEXT_M2M_THUMBNAILS = True
+PHOTOLOGUEEXT_ONE_GALLERY_PER_PHOTO = True
 
 ACCOUNT_OPEN_SIGNUP = True
 ACCOUNT_REQUIRED_EMAIL = False

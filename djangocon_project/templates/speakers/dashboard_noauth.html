@@ -1,16 +1,13 @@
 {% extends "speakers/base.html" %}
 
-{% load boxes_tags %}
-
 {% block body %}
     <header>
         <h1>Speakers</h1>
     </header>
     
     {% if accepting_proposals %}
-        <p>{% box "talk-proposals" %}</p>
         
-        <p>To submit a talk:</p>
+        <h2>To submit a talk:</h2>   
         
         <ol class="steps">
             <li class="next"><a href="{% url acct_signup %}?next={{ request.path }}">sign up</a> and <a href="{% url acct_login %}?next={{ request.path }}">log in</a></li>

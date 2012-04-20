@@ -1,16 +1,12 @@
 {% extends "speakers/base.html" %}
 
-{% load boxes_tags %}
-
 {% block body %}
     <header>
         <h1>Speakers</h1>
     </header>
     
     {% if accepting_proposals %}
-        <p>{% box "talk-proposals" %}</p>
-        
-        <p>To submit a talk:</p>
+        <h2>To submit a talk:</h2>
         
         <ol class="steps">
             <li class="done">sign up and log in</li>

@@ -1,7 +1,6 @@
 {% extends "site_base.html" %}
 
 {% load i18n %}
-{% load boxes_tags %}
 {% load biblion_tags %}
 
 {% block body_class %}home{% endblock %}
@@ -28,18 +27,17 @@
 
 {% block body %}
     <section class="box first">
-    {# {% box "tickets" %} this thing doesn't work for some reason #}
         <h2>Talk Submission Opening Soon!</h2>
-        <p>We plan on opening talk submissions shortly so stay tuned.</p>
+        <p>We plan on opening talk submissions shortly so stay tuned. <a href="{% url speaker_dashboard %}">How to Submit a Proposal</a></p>
     </section>
     <section class="box">
-    {# {% box "sponsors" %}this thing doesn't work for some reason #}
-    <h2>Call for Sponsors!</h2>
-    <p>Start receiving benefits from sponsorship right away.  Visit <a href="/sponsorship/">Sponsorship Opportunities</a> for more information.</p>
+        <h2>Call for Sponsors!</h2>
+        <p>Start receiving benefits from sponsorship right away.  Visit <a href="/sponsorship/">Sponsorship Opportunities</a> for more information.</p>
     </section>
     {% include "_sponsors_slideshow.html" %}
     <hr />
-    <section class="homepage_blog">
+  <div class="row">
+    <section id="homepage_blog" class="span6">
     <h1>Blog</h1>
         {% latest_blog_posts as posts %}
         {% if posts %}
@@ -50,6 +48,20 @@
             <p>No blog posts have been published.</p>
         {% endif %}
     </section>
+    <section id="homepage_gallery" class="span6">
+    {% load photologueext_tags thumbnail %}
+    {% fetch_gallery "2011" "4" "images" %}
+    <h3>{{ gallery }}</h3>
+    {% for image in images %}
+      {% thumbnail image.image "200x132" crop="center" as im %}<img src="{{ im.url }}" alt="{{ image.title }}"/>{% endthumbnail %}
+    {% endfor %}
+    <footer>
+      <a class="btn" href="{{ gallery.get_absolute_url }}">View All Pictures</a>
+      <a class="btn" href="/submit-pictures/">Submit Your Pictures</a>
+    </footer>
+    </section>
+  </div>
+        
 {% endblock %}
 
 {% block sponsor_list %}{% endblock %}

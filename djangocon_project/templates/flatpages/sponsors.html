@@ -7,8 +7,8 @@
     <header>
         <h1>{{ flatpage.title }}</h1>
     </header>
+    <div>{{ flatpage.content }}</div>
     <section id="sponsor_list">
-        {{ flatpage.content }}
         {% sponsors "kryptonite" as sponsors %}
             {% include "flatpages/_sponsor.html" %}
         {% sponsors "diamond" as sponsors %}

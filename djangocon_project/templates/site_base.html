@@ -8,22 +8,27 @@
 {% endcompress %}
 {% endblock %}
 
-{% block topbar_base %}{% endblock %}
 {% block account_bar %}{% endblock %}
 
-{% block body_base %}
-    <header id="page_header">
+{% block topbar_base %}
+<header id="site_header">
         <h1><a href="/">DjangoCon US 2012 - Washington, DC</a></h1>
         {% include "_account_bar.html" %}
-        <nav id="page_nav">
+        <nav id="site_nav">
             {% include "_nav.html" %}
         </nav>
-    </header>
-    {% block tagline %}{% endblock %}
-    <section id="main_content">
+</header>
+{% block tagline %}{% endblock %}
+{% endblock %}
+
+{% block body_base %}
+<section id="main_content">
+{% block page_header %}{% endblock %}
+{% block main_content %}
         {% include "_messages.html" %}
         {% block body %}{% block content %}{% endblock %}{% endblock %}
-    </section>
+{% endblock %}
+</section>
 {% endblock %}
 
 {% block footer %}

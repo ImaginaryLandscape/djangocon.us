@@ -18,16 +18,12 @@
             Cancelled
         {% endif %}
     </p>
-    
-    <div>
-        {{ proposal.description }}
-    </div>
-    
+
+    <p>{{ proposal.description }}</p>
+
     <p><b>Kind</b>: {{ proposal.kind.name }}</p>
     
-    <div>
-        {{ proposal.abstract_html|safe }}
-    </div>
+    {{ proposal.abstract_html|safe }}
     
     <p><b>Audience level</b>: {{ proposal.get_audience_level_display }}</p>
     
@@ -52,18 +48,21 @@
         <p>{{ proposal.additional_notes }}</p>
     {% endif %}
     
-    <h2>Conversation with Reviewers</h2>
-    
+
+    {% if proposal.messages.all %} 
+    <p><strong>Conversation with Reviewers</strong></p>
+    <ul id="review-box">
     {% for message in proposal.messages.all %}
-        <div class="review-box">
-            <div class="comment">{{ message.message_html|safe }}</div>
+        <li>
+            {{ message.message }}
             <div class="dateline"><b>{{ message.user }}</b> {{ message.submitted_at|timesince }} ago</div>
-        </div>
-        <div class="clear"></div>
+        </li>
     {% endfor %}
+    </ul>
+    {% endif %}
+
     
     <h3>Leave a Message</h3>
-    
     <p>You can leave a message for the proposer here.</p>
     
     <form action="" method="POST" accept-charset="utf-8">

@@ -1,0 +1,20 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load bootstrap_tags %}
+
+{% block head_title %}{% trans "Timezone" %}{% endblock %}
+
+{% block body %}
+    <p>{% trans "This site can localize all times into your preferred timezone. Change your timezone below." %}</p>
+    
+    <form method="POST" action="">
+        <fieldset>
+            {% csrf_token %}
+            {{ form|as_bootstrap }}
+            <div class="form-actions">
+                <button type="submit" class="btn">{% trans "Change my timezone" %}</button>
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}
