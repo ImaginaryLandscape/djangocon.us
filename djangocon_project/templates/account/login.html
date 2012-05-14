@@ -11,8 +11,6 @@
     
     <h1>{% trans "Log In" %}</h1>
     
-    <div class="row">
-        <div class="span8">
             {% if user.is_authenticated %}
                 {% user_display user as user_display %}
                 <div class="alert alert-info">
@@ -29,7 +27,7 @@
                 </p>
             {% endif %}
             
-            <form method="POST" action="{% url acct_login %}" autocapitalize="off" class="form-horizontal">
+            <form method="POST" action="{% url acct_login %}" autocapitalize="off">
                 <fieldset>
                     {% csrf_token %}
                     {{ form|as_bootstrap }}
@@ -43,7 +41,7 @@
             </form>
             
             {% ifsetting ACCOUNT_USE_OPENID %}
-            <form action="/openid/register/" method="POST" autocapitalize="off" class="form-horizontal">
+            <form action="/openid/register/" method="POST" autocapitalize="off">
                 <fieldset>
                     <legend>{% trans "Or sign in with your OpenID" %}</legend>
                     {% csrf_token %}
@@ -64,11 +62,6 @@
                 <p>{% blocktrans %}If you have any trouble logging in to your account, contact us at <a href="mailto:{{ CONTACT_EMAIL }}">{{ CONTACT_EMAIL }}</a>.{% endblocktrans %}</p>
             {% endif %}
             
-        </div>
-        <div class="span4">
-            {% include "account/_login_sidebar.html" %}
-        </div>
-    </div>
 {% endblock %}
 
 {% block extra_body %}

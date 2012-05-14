@@ -7,7 +7,8 @@
         <h1>Edit: {{ proposal.title }}</h1>
     </header>
     
-    <p><a href="{% url proposal_speaker_manage proposal.pk %}">Manage speakers</a></p>
+    <p><a href="{% url speaker_dashboard %}">Back to Speakers</a><br />
+    <a href="{% url proposal_speaker_manage proposal.pk %}">Manage speakers</a></p>
     
     <form method="POST" action="" enctype="multipart/form-data">
         {% csrf_token %}

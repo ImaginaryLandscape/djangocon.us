@@ -16,6 +16,9 @@
             <dt><a href="{% url acct_email %}">Verify an email address</a></dt>
             <dd>so you can receive notifications, reset your password and so people can find you more easily.</dd>
 
+            <dt><a href="{% url speaker_dashboard %}">Submit a Proposal</a></dt>
+            <dd>Go to the Speakers page to Submit Talk Proposals</dd>
+
             {% ifsetting ACCOUNT_OPEN_SIGNUP %}
             {% else %}
                 {% if user.is_staff %}
@@ -23,6 +26,7 @@
                     <dd>so more people can share in the fun.</dd>
                 {% endif %}
             {% endifsetting %}
+            
         </dl>
         {% else %}
             {% url acct_login as login_url %}

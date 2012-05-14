@@ -5,8 +5,7 @@
 {% block body %}
     <header>
         <h1>{{ proposal.title }}</h1>
-    </header>
-    <p>
+        <p>
         {% if not proposal.cancelled %}
             {% if request.user == proposal.speaker.user %}
                 <a href="{% url proposal_edit proposal.pk %}">Edit</a>
@@ -17,9 +16,13 @@
         {% else %}
             Cancelled
         {% endif %}
-    </p>
+        </p>
+    </header>
 
-    <p>{{ proposal.description }}</p>
+    <p><a href="{% url speaker_dashboard %}">Back to Speakers</a></p>
+
+    <p><strong>Description</strong>:<br />
+    {{ proposal.description }}</p>
 
     <p><b>Kind</b>: {{ proposal.kind.name }}</p>
     
@@ -30,22 +33,20 @@
     <p><b>Submitting speaker</b>: {{ proposal.speaker }}</p>
     
     {% if proposal.additional_speakers.all %}
-        <p><b>Additional speakers</b>:</p>
-        <ul>
-        {% for speaker in proposal.additional_speakers.all %}
+        <p><b>Additional speakers</b>:
+        {% for speaker in proposal.additional_speakers.all %}<br />
             {% if speaker.user %}
-                <li><b>{{ speaker.name }}</b> &mdash; {{ speaker.email }}</li>
+            <b>{{ speaker.name }}</b> &mdash; {{ speaker.email }}
             {% else %}
-                <li>{{ speaker.email }} &mdash; pending invitation</li>
+            {{ speaker.email }} &mdash; pending invitation
             {% endif %}
         {% endfor %}
-        </ul>
+        </p>
     {% endif %}
     
-    {% if request.user == proposal.speaker.user %}
-        <p><b>Additional Notes:</b></p>
-    
-        <p>{{ proposal.additional_notes }}</p>
+    {% if request.user == proposal.speaker.user and proposal.additional_notes %}
+    <p><b>Additional Notes:</b> <br /> 
+      {{ proposal.additional_notes }}</p>
     {% endif %}
     
 
@@ -54,7 +55,7 @@
     <ul id="review-box">
     {% for message in proposal.messages.all %}
         <li>
-            {{ message.message }}
+            {{ message.message|striptags }}
             <div class="dateline"><b>{{ message.user }}</b> {{ message.submitted_at|timesince }} ago</div>
         </li>
     {% endfor %}
@@ -62,12 +63,10 @@
     {% endif %}
 
     
-    <h3>Leave a Message</h3>
-    <p>You can leave a message for the proposer here.</p>
-    
     <form action="" method="POST" accept-charset="utf-8">
         {% csrf_token %}
         <fieldset>
+            <p>You can leave a message for the reviewers here.</p>
             {{ message_form|as_bootstrap }}
         </fieldset>
         <div class="actions">

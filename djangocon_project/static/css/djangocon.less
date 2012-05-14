@@ -303,7 +303,6 @@ hr {
 #site_nav ul li:last-child {
   border-right: 0;
 }
-
 #footer {
   clear: both;
 }
@@ -374,8 +373,8 @@ hr {
   color: #456097;
   padding-top: 0;
   position: relative;
-  p {
-    font-size: .65em;
+  p, div, li {
+    font-size: 16px;
   }
   > p {
     width: 580px;
@@ -385,7 +384,6 @@ hr {
     margin-left: 200px;
     line-height: 1.5em;
     margin-bottom: 1em;
-    font-size: .75em;
   }
   form {
     clear: left;
@@ -401,15 +399,21 @@ hr {
     display: block;
     width: 530px;
   }
+  input[type="radio"],
+  input[type="checkbox"] {
+    display: inline;
+    width: auto;
+  }
   select {
     display: block;
+    font-size: 14px;
     width: 540px;
   }
   input[type=text], input[type=password] {
     border: 1px solid #a1b2d4;
     padding: 6px 4px 2px;
     background-color: #f3f3f2;
-    font-size: .75em;
+    font-size: 14px;
     .transition(@transition);
   }
   input[type=text]:focus, input[type=password]:focus, textarea:focus, select:focus {
@@ -448,7 +452,7 @@ hr {
   }
   h1 {
     color: #c32f24;
-    font-size: 1.6em;
+    font-size: 38px;
     letter-spacing: -1px;
     line-height: 1.3em;
     margin-bottom: 0;
@@ -525,7 +529,6 @@ hr {
     width: 160px;
     clear: both;
     font-size: 1.3em;
-    height: 1em;
   }
   > h3 {
     color: #5b78b4;
@@ -545,10 +548,9 @@ hr {
   textarea {
     display: block;
     width: 530px;
-    border: 1px solid #a1b2d4;
     padding: 4px;
     background-color: #f3f3f2;
-    font-size: .75em;
+    font-size: 14px;
     .transition(@transition);
   }
   .ctrlHolder {
@@ -576,12 +578,12 @@ hr {
     line-height: 1.4em;
   }
   label {
-    font-size: 0.8em;
+    font-size: 16px;
   }
   table {
     background: #f9f9f9;
     border: 1px solid #dedede;
-    font-size: .65em;
+    font-size: 14px;
     width: 732px;
     a:active {
       vertical-align: 0;
@@ -696,7 +698,7 @@ hr {
       }
       .post_dateline {
         color: rgba(69,96,151,0.6);
-        font-size: 0.75em;
+        font-size: 14px;
         span {
           color: rgba(69,96,151,0.8);
         }
@@ -707,6 +709,13 @@ hr {
     }
     section.teaser {
       padding-top: 0;
+    }
+  }
+  .nav-list {
+    font-size: .8em;
+    a {
+      display: block;
+      padding: 8px;
     }
   }
 }
@@ -733,6 +742,11 @@ a.framed:hover {
   background-color: #ebed89 !important;
 }
 
+table.proposals {
+  th {
+    text-align: left;
+  }
+}
 .sponsors {
   border-bottom: 1px dotted rgba(243, 243, 242, 0.7);
   padding: 0;
@@ -837,7 +851,6 @@ a.framed:hover {
     }
     .annotation {
       float: left;
-      font-size: .9em;
       line-height: 1.4em;  
       width: 630px;
     }
@@ -1320,7 +1333,9 @@ form {
       }
     }
     .help-inline {
-      font-size: .8em;
+      font-size: .7em;
+      font-weight: bold;      
+      padding-left: 2px;
     }
   }
 }
@@ -1331,13 +1346,12 @@ ol.steps {
 
   li {
     line-height: 1.25em;
-  }
-  &.next {
-    font-weight: bold;
-    color: #122819;
-  }
-  &.done {
-    text-shadow: none;
-    text-decoration: line-through;
+    &.next {
+      color: #122819;
+    }
+    &.done {
+      text-shadow: none;
+      text-decoration: line-through;
+    }
   }
 }

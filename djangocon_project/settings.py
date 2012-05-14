@@ -10,6 +10,8 @@ DEPLOYMENT_ROOT = os.path.join(PROJECT_ROOT, '..', '..', '..')
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+DEFAULT_FROM_EMAIL = "webmaster@djangocon.us"
+
 # tells Pinax to serve media through the staticfiles app.
 SERVE_MEDIA = DEBUG
 
@@ -37,7 +39,7 @@ INTERNAL_IPS = [
 ]
 
 ADMINS = [
-    # ("Your Name", "your_email@domain.com"),
+     ("Test", "test.imaginary@gmail.com"),
 ]
 
 MANAGERS = ADMINS
@@ -202,7 +204,6 @@ INSTALLED_APPS = [
 
     # symposion
     "symposion.conference",
-    "symposion.proposals",
     "symposion.speakers",
     "symposion.review",
     "symposion.schedule",
@@ -217,7 +218,8 @@ FIXTURE_DIRS = [
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 
-EMAIL_BACKEND = "mailer.backend.DbBackend"
+#EMAIL_BACKEND = "mailer.backend.DbBackend"
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
 PHOTOLOGUEEXT_DISABLE_WATERMARKS = True
 PHOTOLOGUEEXT_M2M_THUMBNAILS = True
