@@ -197,6 +197,7 @@ INSTALLED_APPS = [
     "staticfiles",
     "uni_form",
     "ajax_validation",
+    "markitup",
 
     # Pinax
     "pinax.apps.account",
@@ -207,6 +208,7 @@ INSTALLED_APPS = [
     "symposion.speakers",
     "symposion.review",
     "symposion.schedule",
+    "symposion.proposals",
 
     # project
     "sponsors", #custom project version
@@ -242,7 +244,9 @@ MARKITUP_SET = "markitup/sets/markdown-custom"
 MARKITUP_SKIN = "markitup/skins/simple"
 #MARKITUP_FILTER = ("wiki.markdown_parser.parse", {})
 #MARKITUP_FILTER = ("wiki.markdown_parser", {})
-MARKITUP_FILTER = ('django.contrib.markup.templatetags.markup.textile', {})
+#MARKITUP_FILTER = ('django.contrib.markup.templatetags.markup.textile', {})
+MARKITUP_FILTER = ("markdown.markdown", {"safe_mode": True})
+
 MARKITUP_MEDIA_URL = STATIC_URL
 
 LOGIN_URL = "/account/login/" # @@@ any way this can be a url name?

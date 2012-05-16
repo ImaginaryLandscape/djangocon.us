@@ -25,8 +25,11 @@
     {{ proposal.description }}</p>
 
     <p><b>Kind</b>: {{ proposal.kind.name }}</p>
-    
-    {{ proposal.abstract_html|safe }}
+
+    <p><b>Abstract:</b></p>    
+    <div class="proposal-markdown offset2 span7">
+      {{ proposal.abstract }}
+    </div>
     
     <p><b>Audience level</b>: {{ proposal.get_audience_level_display }}</p>
     
@@ -45,8 +48,10 @@
     {% endif %}
     
     {% if request.user == proposal.speaker.user and proposal.additional_notes %}
-    <p><b>Additional Notes:</b> <br /> 
-      {{ proposal.additional_notes }}</p>
+    <p><b>Additional Notes:</b></p>
+    <div class="proposal-markdown offset2 span7"> 
+      {{ proposal.additional_notes }}
+    </div>
     {% endif %}
     
 

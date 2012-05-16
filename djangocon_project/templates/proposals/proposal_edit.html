@@ -1,6 +1,10 @@
 {% extends "proposals/base.html" %}
 
-{% load bootstrap_tags %}
+{% load bootstrap_tags markitup_tags %}
+
+{% block extra_head %}
+    {% markitup_media %}
+{% endblock %}
 
 {% block body %}
     <header>
@@ -14,6 +18,8 @@
         {% csrf_token %}
         <fieldset>
             {{ form|as_bootstrap }}
+            {% markitup_editor form.abstract.auto_id %}
+            {% markitup_editor form.additional_notes.auto_id %}
         </fieldset>
         <div class="actions">
             <button type="submit" value="save" class="btn primary">Save</button>
@@ -23,8 +29,12 @@
 
 {% block extra_body %}
     <script type="text/javascript">
-        $(function() {
-            $("#id_title").focus();
-        });
+    $(function() {
+        $("#id_title").focus();
+    });
     </script>
 {% endblock %}
+
+
+
+
