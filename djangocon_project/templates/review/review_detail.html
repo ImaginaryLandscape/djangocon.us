@@ -5,27 +5,27 @@
 
 {% block primary %}
 
-    <h1>Proposal Review</h1>
+    <h2>Proposal Review</h2>
 
     <div class="proposal">
 
         <div class="result-box {{ proposal.result.get_accepted_display }} mod">
-            <h2 class="proposal-title">#{{ proposal.number }}: {{ proposal.title }}</h2>
+            <h3 class="proposal-title">#{{ proposal.number }}: {{ proposal.title }}</h3>
             <div class="result-content">
                 <h6>Current status: <span>{{ proposal.result.get_accepted_display }}</span></h6>
             {% if is_reviewer_admin %}
                 <form class="result-form" method="POST" action="">
                     {% csrf_token %}
                     {% if proposal.result.get_accepted_display == "accepted" %}
-                        <input type="submit" name="result_submit" value="reject" class="reject" />
-                        <input type="submit" name="result_submit" value="undecide" class="undecide" />
+                        <input type="submit" name="result_submit" value="reject" class="reject btn" />
+                        <input type="submit" name="result_submit" value="undecide" class="undecide btn" />
                     {% else %}
                         {% if proposal.result.get_accepted_display == "rejected" %}
-                            <input type="submit" name="result_submit" value="accept" class="accept" />
-                            <input type="submit" name="result_submit" value="undecide" class="undecide" />
+                            <input type="submit" name="result_submit" value="accept" class="accept btn" />
+                            <input type="submit" name="result_submit" value="undecide" class="undecide btn" />
                         {% else %}
-                            <input type="submit" name="result_submit" value="accept" class="accept" />
-                            <input type="submit" name="result_submit" value="reject" class="reject" />
+                            <input type="submit" name="result_submit" value="accept" class="accept btn" />
+                            <input type="submit" name="result_submit" value="reject" class="reject btn" />
                         {% endif %}
                     {% endif %}
                 </form>
@@ -155,7 +155,7 @@
                 <fieldset>
                     {{ review_form|as_uni_form }}
                     <div class="form_block">
-                        <input type="submit" name="vote_submit" value="submit" />
+                        <input class="btn" type="submit" name="vote_submit" value="submit" />
                     </div>
                 </fieldset>
             </form>
@@ -185,7 +185,7 @@
             <fieldset>
                 {{ message_form|as_uni_form }}
                 <div class="form_block">
-                    <input type="submit" name="message_submit" value="submit" />
+                    <input class="btn" type="submit" name="message_submit" value="submit" />
                 </div>
             </fieldset>
         </form>

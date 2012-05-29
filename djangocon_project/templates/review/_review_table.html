@@ -19,9 +19,9 @@
     {% for proposal in props %}
         {% if forloop.first %}
             {% if proposal.kind.name %}
-                <h2 id="type-{{ proposal.kind.name|slugify|lower }}">
-                    {{ proposal.kind.name }}{{ props|length|pluralize }}
-                </h2>
+            <h2 id="type-{{ proposal.kind.name|slugify|lower }}">
+                {{ proposal.kind.name }}{{ props|length|pluralize }}
+            </h2>
             {% endif %}
             <table class="review review-list">
                 <thead>
@@ -124,8 +124,7 @@
         </tr>
         {% if forloop.last %}
         </tbody>
-            </table>
-            <hr />
+        </table>
         {% endif %}
     {% endfor %}
 {% empty %}
