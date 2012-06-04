@@ -12,7 +12,7 @@
         <div class="result-box {{ proposal.result.get_accepted_display }} mod">
             <h3 class="proposal-title">#{{ proposal.number }}: {{ proposal.title }}</h3>
             <div class="result-content">
-                <h6>Current status: <span>{{ proposal.result.get_accepted_display }}</span></h6>
+              <p><strong>Current status:</strong> <span>{{ proposal.result.get_accepted_display }}</span></p>
             {% if is_reviewer_admin %}
                 <form class="result-form" method="POST" action="">
                     {% csrf_token %}

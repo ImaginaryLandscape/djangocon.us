@@ -8,19 +8,19 @@
 </div>
 {% endcomment %}
 
-<h3>Proposal Types: 
+<p><strong>Proposal Types:</strong>
 {% for type, props in proposals.iteritems %}
     <a href="#type-{{ type|slugify|lower }}">{{ type }}{{ props|length|pluralize }} ({{ props|length }})</a>{% if not forloop.last %}, {% endif %}
 {% endfor %}
-</h3>
+</p>
 
 {% for type, props in proposals.iteritems %}
     {% for proposal in props %}
         {% if forloop.first %}
             {% if proposal.kind.name %}
-            <h2 id="type-{{ proposal.kind.name|slugify|lower }}">
+            <h3 id="type-{{ proposal.kind.name|slugify|lower }}">
                 {{ proposal.kind.name }}{{ props|length|pluralize }}
-            </h2>
+            </h3>
             {% endif %}
             <table class="review review-list">
                 <thead>
