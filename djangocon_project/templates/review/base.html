@@ -8,24 +8,28 @@
 {% endblock %}
 
 {% block body %}
-    <div>
-        <h1 class="section-title">Review</h1>
+<header>
+<h1>Review</h1>
+</header>
+<div class="row">
+    <div class="span3 columns">
         {% block extra_sidebar %}{% endblock %}
-        <ul class="side-nav">
-            <li><a href="{% url review_list %}">all reviews</a></li>
-            <li><a href="{% url review_list_user user.username %}">your reviews</a></li>
-            <li><a href="{% url review_stats %}">stats</a></li>
+        <ul class="nav nav-list">
+            <li class="nav-header">Reviews</li>
+            <li><a href="{% url review_list %}">All Reviews</a></li>
+            <li><a href="{% url review_list_user user.username %}">Your Reviews</a></li>
+            <li><a href="{% url review_stats %}">Stats</a></li>
         {% if is_reviewer_tutorials %}
-            <li><a href="{% url review_tutorial_list %}">all tutorial reviews</a></li>
-            <li><a href="{% url review_tutorial_list_user user.username %}">your tutorial reviews</a></li>
+            <li><a href="{% url review_tutorial_list %}">All Tutorial Reviews</a></li>
+            <li><a href="{% url review_tutorial_list_user user.username %}">Your Tutorial Reviews</a></li>
         {% endif %}
         {% if is_reviewer_admin %}
-            <li><a href="{% url review_admin %}">admin</a></li>
+            <li><a href="{% url review_admin %}">Admin</a></li>
         {% endif %}
         </ul>
     </div>
 
-    <div>
+    <div id="review-content" class="span9 columns">
         {% block primary %}{% endblock %}
     </div>
 {% endblock %}
