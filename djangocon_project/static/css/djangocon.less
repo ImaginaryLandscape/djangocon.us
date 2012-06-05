@@ -461,12 +461,6 @@ hr {
     margin-bottom: 0;
     text-align: center;
   }
-  .row h1 {
-    color: #456097;
-    font-size: 24px;
-    line-height: 36px;
-    text-align: left;
-  }
   .captionlink {
     color: #456097;
     display: block;
@@ -549,6 +543,9 @@ hr {
     clear: both;
     font-weight: normal;
     height: 1.2em;
+  }
+  h6 {
+    font-size: .9em;
   }
   li {
     color: #456097;
@@ -758,15 +755,27 @@ table.proposals {
     text-align: left;
   }
 }
-#review-content table {
-  border-collapse: separate;
-  font-size: 13px!important;
-  td {
-    vertical-align: top;
+#proposal-content, #review-content {
+  > div, p, table {
+    line-height: normal;
+    margin-bottom: 1.5em;
+  }
+  table {
+    border-collapse: separate;
+    font-size: 13px!important;
+    td {
+      vertical-align: top;
+    }
   }
 }
 
 .proposal-markdown {
+  * {
+    color: #555!important;
+    font-family: helvetica, arial, sans-serif!important;
+    text-align: left!important;
+  }
+  background: #fff;
   border: 1px solid #ccc;
   clear: both;
   margin-bottom: 20px;
