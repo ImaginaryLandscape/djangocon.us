@@ -1,15 +1,4 @@
 {% extends "schedule/base.html" %}
 
-{% block body %}
-    <h1>Schedule</h1>
-    
-    <div>
-    </div>
-    
-    <ul>
-        <li><a href="{% url schedule_tutorials %}">Tutorial Schedule</a></li>
-        <li><a href="{% url schedule_conference %}">Conference Schedule</a></li>
-        <li><a href="{% url schedule_list_talks %}">List of Accepted Talks and Panels</a></li>
-        <li><a href="{% url schedule_list_posters %}">List of Accepted Posters</a></li>
-    </ul>
+{% block primary %}
 {% endblock %}

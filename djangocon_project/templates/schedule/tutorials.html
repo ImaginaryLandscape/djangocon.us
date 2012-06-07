@@ -2,55 +2,22 @@
 
 {% load timezone_filters %}
 
-{% block extra_head %}
-    <style>
-        .presentation {
-            margin-top: 10px;
-        }
-        .title {
-            font-size: 14pt;
-            font-weight: bold;
-        }
-    </style>
-{% endblock %}
-
 {% block body_class %}wiki{% endblock body_class %}
 
-{% block body %}
-    <div class="span-17">
-        <h1 class="section-title">Schedule <span>Tutorials</span></h1>
-        <div class="page">
-            <h2>Wednesday, March 7th</h2>
+{% block primary %}
+<h2>Tutorials Schedule</h2>
+            <h3>Tuesday, Sept. 3rd</h3>
             
-            <h3>Morning ({{ tutorials.wed.morning.slot.0|localtime:timezone|time }} &ndash; {{ tutorials.wed.morning.slot.1|localtime:timezone|time }})</h3>
+            <p>Morning ({{ tutorials.tue.morning.slot.0|localtime:timezone|time }} &ndash; {{ tutorials.tue.morning.slot.1|localtime:timezone|time }})</p>
             
-            {% for presentation in tutorials.wed.morning.presentations %}
+            {% for presentation in tutorials.tue.morning.presentations %}
                 {% include "schedule/_presentation.html" %}
             {% endfor %}
             
-            <h3>Afternoon ({{ tutorials.wed.afternoon.slot.0|localtime:timezone|time }} &ndash; {{ tutorials.wed.afternoon.slot.1|localtime:timezone|time }})</h3>
+            <p>Afternoon ({{ tutorials.tue.afternoon.slot.0|localtime:timezone|time }} &ndash; {{ tutorials.tue.afternoon.slot.1|localtime:timezone|time }})</p>
             
-            {% for presentation in tutorials.wed.afternoon.presentations %}
+            {% for presentation in tutorials.tue.afternoon.presentations %}
                 {% include "schedule/_presentation.html" %}
             {% endfor %}
             
-            <h2>Thursday, March 8th</h2>
-            
-            <h3>Morning ({{ tutorials.thurs.morning.slot.0|localtime:timezone|time }} &ndash; {{ tutorials.thurs.morning.slot.1|localtime:timezone|time }})</h3>
-            
-            {% for presentation in tutorials.thurs.morning.presentations %}
-                {% include "schedule/_presentation.html" %}
-            {% endfor %}
-            
-            <h3>Afternoon ({{ tutorials.thurs.afternoon.slot.0|localtime:timezone|time }} &ndash; {{ tutorials.thurs.afternoon.slot.1|localtime:timezone|time }})</h3>
-            
-            {% for presentation in tutorials.thurs.afternoon.presentations %}
-                {% include "schedule/_presentation.html" %}
-            {% endfor %}
-        </div>
-    </div>
-    <div class="span-7 last">
-        {% include "schedule/_subnav.html" %}
-    </div>
-
 {% endblock %}
