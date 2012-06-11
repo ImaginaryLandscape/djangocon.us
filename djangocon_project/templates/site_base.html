@@ -8,6 +8,11 @@
 {% endcompress %}
 {% endblock %}
 
+{% block extra_head_base %}
+    <link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.png">
+    {% block extra_head %}{% endblock %}
+{% endblock %}
+
 {% block account_bar %}{% endblock %}
 
 {% block topbar_base %}
