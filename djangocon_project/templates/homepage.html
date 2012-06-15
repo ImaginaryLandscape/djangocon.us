@@ -12,7 +12,7 @@
     <div id="date_blocks">
         <div class="dateblock" id="proposals_dateblock">
             <h2>Proposals</h2>
-            <h3>Jun. 16<sup>rd</sup></h3>
+            <h3>Jun. 16<sup>th</sup></h3>
         </div>      
         <div class="dateblock" id="tutorials_dateblock">
             <h2>Tutorials</h2>
@@ -31,8 +31,12 @@
 
 {% block body %}
     <section class="box first">
+    {% if ACCEPTING_PROPOSALS %}
         <h2>Talk Submission Open!</h2>
         <p>Have a great idea? Want to present at DjangoCon? <a href="{% url speaker_dashboard %}">Submit your proposal</a> (proposals accepted until 6/16).
+    {% else %}
+        <h2>Talk Submission Closed</h2>
+    {% endif %}
     </section>
     <section class="box">
         <h2>Call for Sponsors!</h2>

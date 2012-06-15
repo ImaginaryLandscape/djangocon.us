@@ -33,7 +33,6 @@ def speaker_dashboard(request):
             template_name = "dashboard_auth_nospeaker.html"
     else:
         template_name = "dashboard_noauth.html"
-    ctx["accepting_proposals"] = settings.ACCEPTING_PROPOSALS
     ctx = RequestContext(request, ctx)
     return render_to_response("speakers/%s" % template_name, ctx)
 

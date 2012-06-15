@@ -151,7 +151,9 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     "django.core.context_processors.request",
     "django.contrib.messages.context_processors.messages",
 
-    'photologueext.context_processors.media',
+    "symposion.proposals.context_processors.proposal_settings",
+
+    "photologueext.context_processors.media",
 
     "pinax.core.context_processors.pinax_settings",
 
@@ -260,6 +262,7 @@ DEBUG_TOOLBAR_CONFIG = {
 THUMBNAIL_EXTENSION = "PNG"
 
 ACCEPTING_PROPOSALS = True
+
 SCHEDULE_TIMEZONE = "US/Pacific"
 
 # local_settings.py can be used to override environment-specific settings

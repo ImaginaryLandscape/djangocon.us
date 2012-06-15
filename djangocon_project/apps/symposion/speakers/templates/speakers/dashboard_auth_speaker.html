@@ -11,7 +11,7 @@
         <h1>Speakers</h1>
     </header>
     
-    {% if accepting_proposals %}
+    {% if ACCEPTING_PROPOSALS %}
         
         <h2>To submit a talk:</h2>
         
@@ -48,7 +48,7 @@
             {% endfor %}
         </table>
     {% else %}
-        <p>No proposals. You can <a href="{% url proposal_submit %}">submit one</a> now!</p>
+    <p>No proposals. {% if ACCEPTING_PROPOSALS %}You can <a href="{% url proposal_submit %}">submit one</a> now!{% endif %}</p>
     {% endif %}
     
 {% endblock %}
