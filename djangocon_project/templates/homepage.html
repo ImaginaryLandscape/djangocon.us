@@ -33,9 +33,10 @@
     <section class="box first">
     {% if ACCEPTING_PROPOSALS %}
         <h2>Talk Submission Open!</h2>
-        <p>Have a great idea? Want to present at DjangoCon? <a href="{% url speaker_dashboard %}">Submit your proposal</a> (proposals accepted until 6/16).
+        <p>Have a great idea? Want to present at DjangoCon? <a href="{% url speaker_dashboard %}">Submit your proposal</a> (proposals accepted until 6/16).</p>
     {% else %}
-        <h2>Talk Submission Closed</h2>
+        <h2>Talk Submissions Closed</h2>
+        <p>Proposal submission ended 6/16.</p>
     {% endif %}
     </section>
     <section class="box">
