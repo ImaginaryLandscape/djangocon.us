@@ -1,14 +1,9 @@
 {% extends "speakers/base.html" %}
 
-{% block subnav %}
-    <ul>
-        <li><a href="{% url speaker_edit %}">Edit your speaker profile</a></li>
-    </ul>
-{% endblock %}
-
 {% block body %}
     <header>
         <h1>Speakers</h1>
+        <p><a href="{% url speaker_edit %}">Edit your speaker profile</a></p>                
     </header>
     
     {% if ACCEPTING_PROPOSALS %}
