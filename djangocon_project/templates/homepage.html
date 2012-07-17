@@ -31,6 +31,9 @@
 
 {% block body %}
     <section class="box first">
+        <h2>Code of Conduct</h2>
+        <p>DjangoCon is dedicated to providing a harassment-free conference experience for everyone.  Please read our <a href="/codeofconduct/">Code of Conduct</a>.</p>
+    {% comment %}
     {% if ACCEPTING_PROPOSALS %}
         <h2>Talk Submission Open!</h2>
         <p>Have a great idea? Want to present at DjangoCon? <a href="{% url speaker_dashboard %}">Submit your proposal</a> (proposals accepted until 6/16).</p>
@@ -38,6 +41,7 @@
         <h2>Talk Submissions Closed</h2>
         <p>Proposal submission ended 6/16.</p>
     {% endif %}
+    {% endcomment %}
     </section>
     <section class="box">
         <h2>Call for Sponsors!</h2>
