@@ -263,7 +263,7 @@ THUMBNAIL_EXTENSION = "PNG"
 
 ACCEPTING_PROPOSALS = True
 
-SCHEDULE_TIMEZONE = "US/Pacific"
+SCHEDULE_TIMEZONE = "US/Eastern"
 
 # local_settings.py can be used to override environment-specific settings
 # like database and email that differ between development and production.

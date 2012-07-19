@@ -109,7 +109,7 @@ class Slot(models.Model):
         self.save()
     
     def __unicode__(self):
-        return u"%s (%s: %s — %s)" % (self.title, self.start.strftime("%a"), self.start.strftime("%X"), self.end.strftime("%X"))
+        return u"%s (%s: %s — %s)" % (self.track, self.start.strftime("%a"), self.start.strftime("%X"), self.end.strftime("%X"))
 
 
 class Presentation(models.Model):
@@ -165,7 +165,7 @@ class Presentation(models.Model):
     additional_speakers = models.ManyToManyField("speakers.Speaker", blank=True)
     cancelled = models.BooleanField(default=False)
     
-#    extreme_pycon = models.BooleanField(u"EXTREME PyCon!", default=False)
+    extreme_pycon = models.BooleanField(u"EXTREME PyCon!", default=False)
     invited = models.BooleanField(default=False)
     
     def speakers(self):

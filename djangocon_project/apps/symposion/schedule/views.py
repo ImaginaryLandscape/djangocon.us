@@ -40,7 +40,7 @@ CONFERENCE_TAGS = getattr(settings, "CONFERENCE_TAGS", [])
 def hash_for_user(user):
     return hashlib.sha224(settings.SECRET_KEY + user.username).hexdigest()
 
-
+@login_required
 def schedule_list(request, template_name="schedule/schedule_list.html", extra_context=None):
     
     if extra_context is None:
@@ -187,7 +187,7 @@ def schedule_conference_edit(request):
     ctx = RequestContext(request, ctx)
     return render_to_response("schedule/conference_edit.html", ctx)
 
-
+@login_required
 def schedule_conference(request):
     
     if request.user.is_authenticated():
@@ -202,6 +202,10 @@ def schedule_conference(request):
             Timetable(Slot.objects.filter(start__week_day=4), user=request.user),
             Timetable(Slot.objects.filter(start__week_day=5), user=request.user),
         ],
+        "tuesday": Timetable(Slot.objects.filter(start__week_day=4), user=request.user),
+        "wednesday": Timetable(Slot.objects.filter(start__week_day=4), user=request.user),
+        "thursday": Timetable(Slot.objects.filter(start__week_day=5), user=request.user),
+
         "timezone": settings.SCHEDULE_TIMEZONE,
         "csrf_token": csrf(request),
     }
