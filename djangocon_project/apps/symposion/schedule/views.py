@@ -1,7 +1,7 @@
 import datetime
 import hashlib
 import itertools
-
+import operator
 from icalendar import Calendar, Event
 
 from django.conf import settings
@@ -13,7 +13,7 @@ from django.template import RequestContext
 from django.utils import simplejson as json
 
 from django.contrib.admin.views.decorators import staff_member_required
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required 
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 
@@ -40,20 +40,22 @@ CONFERENCE_TAGS = getattr(settings, "CONFERENCE_TAGS", [])
 def hash_for_user(user):
     return hashlib.sha224(settings.SECRET_KEY + user.username).hexdigest()
 
-@login_required
+#@login_required
+@staff_member_required
 def schedule_list(request, template_name="schedule/schedule_list.html", extra_context=None):
     
     if extra_context is None:
         extra_context = {}
     
     slots = Slot.objects.all().order_by("start")
-    
+    keyfunc = operator.attrgetter('start')
+    slots = [ { k : sorted(list(g), key =lambda x: x.track_id) } for k, g in itertools.groupby(slots, keyfunc)]
     return render_to_response(template_name, dict({
         "slots": slots,
         "timezone": settings.SCHEDULE_TIMEZONE,
     }, **extra_context), context_instance=RequestContext(request))
 
-
+@staff_member_required
 def schedule_presentation(request, presentation_id, template_name="schedule/presentation_detail.html", extra_context=None):
     
     if extra_context is None:
@@ -72,7 +74,7 @@ def schedule_presentation(request, presentation_id, template_name="schedule/pres
         "timezone": settings.SCHEDULE_TIMEZONE,
     }, **extra_context), context_instance=RequestContext(request))
 
-
+@staff_member_required
 def schedule_presentation_list(request, kind_slug):
 
     kind = get_object_or_404(PresentationKind, slug=kind_slug, published=True)
@@ -83,7 +85,7 @@ def schedule_presentation_list(request, kind_slug):
         "kind": kind,
     }), context_instance=RequestContext(request))
 
-
+@staff_member_required
 def schedule_tutorials(request):
     
     tutorials = {
@@ -172,7 +174,8 @@ class Timetable(object):
         return times.index(end) - times.index(start)
 
 
-@login_required
+#@login_required
+@staff_member_required
 def schedule_conference_edit(request):
     if not request.user.is_staff:
         return redirect("schedule_conference")
@@ -187,7 +190,8 @@ def schedule_conference_edit(request):
     ctx = RequestContext(request, ctx)
     return render_to_response("schedule/conference_edit.html", ctx)
 
-@login_required
+#@login_required
+@staff_member_required
 def schedule_conference(request):
     
     if request.user.is_authenticated():
@@ -202,7 +206,7 @@ def schedule_conference(request):
             Timetable(Slot.objects.filter(start__week_day=4), user=request.user),
             Timetable(Slot.objects.filter(start__week_day=5), user=request.user),
         ],
-        "tuesday": Timetable(Slot.objects.filter(start__week_day=4), user=request.user),
+        "tuesday": Timetable(Slot.objects.filter(start__week_day=3), user=request.user),
         "wednesday": Timetable(Slot.objects.filter(start__week_day=4), user=request.user),
         "thursday": Timetable(Slot.objects.filter(start__week_day=5), user=request.user),
 
@@ -213,7 +217,8 @@ def schedule_conference(request):
     return render_to_response("schedule/conference.html", ctx)
 
 
-@login_required
+#@login_required
+@staff_member_required
 def schedule_slot_add(request, slot_id, kind):
     
     if not request.user.is_staff:
@@ -247,7 +252,8 @@ def schedule_slot_add(request, slot_id, kind):
     return render_to_response("schedule/slot_place.html", ctx)
 
 
-@login_required
+#@login_required
+@staff_member_required
 def schedule_slot_edit(request, slot_id):
     
     if not request.user.is_staff:
@@ -282,7 +288,8 @@ def schedule_slot_edit(request, slot_id):
     return render_to_response("schedule/slot_place.html", ctx)
 
 
-@login_required
+#@login_required
+@staff_member_required
 def schedule_slot_remove(request, slot_id):
     
     if not request.user.is_staff:
@@ -338,7 +345,7 @@ def session_list(request):
         "sessions": sessions,
     }, context_instance=RequestContext(request))
 
-
+@staff_member_required
 def session_detail(request, session_id):
     
     session = get_object_or_404(Session, id=session_id)
@@ -395,7 +402,8 @@ def session_detail(request, session_id):
     }, context_instance=RequestContext(request))
 
 
-@login_required
+#@login_required
+@staff_member_required
 def schedule_user_slot_manage(request, presentation_id):
     if request.method == "POST":
         if request.POST["action"] == "add":
@@ -481,6 +489,7 @@ def json_serializer(obj):
         return list(obj.timetuple())
     raise TypeError
 
+@staff_member_required
 def schedule_json(request):
     slots = Slot.objects.all().order_by("start")
 

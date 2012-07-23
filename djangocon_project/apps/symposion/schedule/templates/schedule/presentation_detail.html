@@ -4,6 +4,8 @@
 
 {% block head_title %}Presentation: {{ presentation.title }}{% endblock %}
 
+{% block body_class %}talk_detail{% endblock %}
+
 {% block extra_head %}
     <style>
         a.unbookmark {
@@ -24,55 +26,52 @@
 
 {% block body %}
     
-    <h1>{{ presentation.title }}</h1>
+    <h1 class="talk_title">{{ presentation.title }}</h1>
+    <section class="meta">
+        A {{ presentation.kind.name }} presented by
+        {% for speaker in presentation.speakers %}
+        <a href="{% url speaker_profile speaker.id %}">{{ speaker }}</a>{% if not forloop.last %}, {% endif %}
+        {% endfor %}
 
-    <div class="badges">
-        {% if presentation.extreme %}
-            <div class="badge extreme">E</div>
-        {% endif %}
-    </div>
+      <div id="personal">
+      {% if user.is_authenticated %}
+          {% if presentation.bookmarked %}
+          <a href="{% url schedule_user_slot_manage presentation.id %}" class="bookmarked">&nbsp;</a> <em class="instructions">&larr; click to unbookmark</em>
+          {% else %}
+          <a href="{% url schedule_user_slot_manage presentation.id %}" class="bookmark">&nbsp;</a> <em class="instructions">&larr; click to bookmark</em>
+          {% endif %}
+      {% else %}
+          <a href="{% url acct_login %}?next={{ request.path }}">log in</a> to bookmark.
+          {% endif %}
+      </div>
+    </section>
+    
 
     {% if presentation.cancelled %}
         <p class="cancelled">Cancelled</p>
     {% endif %}
 
-    <div class="speakers">
-        {% for speaker in presentation.speakers %}
-            <a href="{% url speaker_profile speaker.id %}">{{ speaker }}</a>
-        {% if not forloop.last %}, {% endif %}{% endfor %}
-    </div>
-    
-    <div class="badges">
-        {% if presentation.extreme_pycon %}
-            <div class="badge extreme">E</div>
-        {% endif %}
-        <div class="clear"></div>
-    </div>
+    <h3>Audience level</h3>
+    <p>{{ presentation.get_audience_level_display }}</p>
 
-    <dl class="inline mod">
-        <dt>Type:</dt>
-        <dd>{{ presentation.kind.name }}</dd>
-
-        <dt>Audience level:</dt>
-        <dd>{{ presentation.get_audience_level_display }}</dd>
-
-        <dt>Category:</dt>
-        <dd>{{ presentation.category.name }}</dd>
-    </dl>
+    <h3>Category</h3> 
+    <p>{{ presentation.category.name }}</p>
     
     {% if presentation.slot %}
-        <div class="slot">{{ presentation.slot.start|localtime:timezone|date:"F jS" }} {{ presentation.slot.start|localtime:timezone|date:"P" }} &ndash; {{ presentation.slot.end|localtime:timezone|date:"P" }}</div>
+    <h3>Time</h3>
+    <p>{{ presentation.slot.start|localtime:timezone|date:"F jS" }}, {{ presentation.slot.start|localtime:timezone|date:"P" }} &ndash; {{ presentation.slot.end|localtime:timezone|date:"P" }}</p>
     {% endif %}
 
     <hr />
 
     <h3>Description</h3>
 
-    <div class="description">{{ presentation.description }}</div>
+    <p class="description">{{ presentation.description }}</p>
     
     <hr />
-
-    <h3>Abstract</h3>
+<div>
+    <h2>Abstract</h2>
+</div>
     
     <div class="abstract">{{ presentation.abstract|safe }}</div>
 {% endblock %}
@@ -82,14 +81,15 @@
         $(document).ready(function() {
             $("a.bookmark").live("click", function() {
                 aElem = $(this);
+                instructions = aElem.next(".instructions")
                 $.ajax({
                     type: "POST",
                     url: this.href,
                     data: "action=add;csrfmiddlewaretoken={{ csrf_token }}",
                     success: function() {
-                        aElem.text("unbookmark");
                         aElem.removeClass("bookmark");
-                        aElem.addClass("unbookmark");
+                        aElem.addClass("bookmarked");
+                        instructions.html("&larr; click to unbookmark");
                     },
                     error: function(xhr, options, error) {
                         alert(xhr.status);
@@ -97,16 +97,17 @@
                 });
                 return false;
             });
-            $("a.unbookmark").live("click", function() {
+            $("a.bookmarked").live("click", function() {
                 aElem = $(this);
+                instructions = aElem.next(".instructions")
                 $.ajax({
                     type: "POST",
                     url: this.href,
                     data: "action=delete;csrfmiddlewaretoken={{ csrf_token }}",
                     success: function(response) {
-                        aElem.text("bookmark");
-                        aElem.removeClass("unbookmark");
+                        aElem.removeClass("bookmarked");
                         aElem.addClass("bookmark");
+                        instructions.html("&larr; click to bookmark")
                     },
                     error: function(xhr, options, error) {
                         alert(xhr.status);
@@ -117,3 +118,4 @@
         });
     </script>
 {% endblock %}
+

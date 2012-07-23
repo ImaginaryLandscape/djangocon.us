@@ -7,23 +7,27 @@
     <table class="schedule-table">
         {% for slot in slots %}
             {% ifchanged %}
-                <tr class="conf-date"><th colspan="3">{{ slot.start|localtime:timezone|date:"F jS" }}</th></tr>
+            <tr class="conf-date"><th colspan="3">{{ slot.keys.0|localtime:timezone|date:"l" }}<br>{{ slot.keys.0|localtime:timezone|date:"F jS" }}</th></tr>
                 <tr><th>Time</th><th>Track 1</th><th>Track 2</th></tr>
             {% endifchanged %}
             <tr>
-                <td nowrap>{{ slot.start|localtime:timezone|date:"P" }} &ndash; {{ slot.end|localtime:timezone|date:"P" }}</td>
-                {% for session in slot.sessions %}
-                    {% if session.plenary %}
-                        <td colspan="2" class="title">
-                            <a href="{% url schedule_presentation session.id %}">{{ session.title }}</a>
+                <td nowrap>{{ slot.keys.0|localtime:timezone|date:"P" }} &ndash; {{ slot.values.0.0.end|localtime:timezone|date:"P" }}</td>
+                {% for event in slot.values.0 %}
+                    {% if event.kind.name == 'plenary' %}
+                        <td colspan="2" class="title plenary">
+                            {{ event.title }}
                         </td>
                     {% else %}
-                        <td class="title">
-                            <a href="{% url schedule_presentation session.id %}">{{ session.title }}</a>
-                        </td>
+                    <td class="title">
+                      {% if event.presentation.id %}
+                      <a href="{% url schedule_presentation event.presentation.id %}">{{ event.presentation.title }}</a>
+                      {% else %}
+                      {{ event.presentation.title }}
+                      {% endif %}
+                    </td>
                     {% endif %}
                 {% endfor %}
-                {% ifequal slot.sessions.count 0 %}
+                {% ifequal slot.values.0.count 0 %}
                     <td colspan="2" class="other title">{{ slot.title }}</td>
                 {% endifequal %}
             </tr>

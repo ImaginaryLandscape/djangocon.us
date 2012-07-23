@@ -32,16 +32,15 @@
 {% block extra_body %}
     <script type="text/javascript">
         $(document).ready(function() {
-            $(".slot .bookmark > a").live("click", function() {
-                divElem = $(this).parent();
+            $(".slot .bookmark").live("click", function() {
+                aElem = $(this);
                 $.ajax({
                     type: "POST",
                     url: this.href,
                     data: "action=add;csrfmiddlewaretoken={{ csrf_token }}",
                     success: function() {
-                        divElem.removeClass("bookmark");
-                        divElem.addClass("bookmarked");
-                        divElem.parent().parent().addClass("bookmarked");
+                        aElem.removeClass("bookmark");
+                        aElem.addClass("bookmarked");
                     },
                     error: function(xhr, options, error) {
                         alert(xhr.status);
@@ -49,16 +48,15 @@
                 });
                 return false;
             });
-            $(".slot .bookmarked > a").live("click", function() {
-                divElem = $(this).parent();
+            $(".slot .bookmarked").live("click", function() {
+                aElem = $(this);
                 $.ajax({
                     type: "POST",
                     url: this.href,
                     data: "action=delete;csrfmiddlewaretoken={{ csrf_token }}",
                     success: function(response) {
-                        divElem.removeClass("bookmarked");
-                        divElem.addClass("bookmark");
-                        divElem.parent().parent().removeClass("bookmarked");
+                        aElem.removeClass("bookmarked");
+                        aElem.addClass("bookmark");
                     },
                     error: function(xhr, options, error) {
                         alert(xhr.status);

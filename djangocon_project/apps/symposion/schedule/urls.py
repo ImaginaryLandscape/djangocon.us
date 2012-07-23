@@ -3,8 +3,9 @@ from django.views.generic.simple import direct_to_template
 
 
 urlpatterns = patterns("symposion.schedule.views",
-    url(r"^$", "schedule_list", name="schedule_list"),
+    url(r"^$", "schedule_conference", name="schedule_conference"),
     url(r"^index/$", direct_to_template, {"template": "schedule/index.html"}, name="schedule_index"),
+    url(r"^list/$", "schedule_list", name="schedule_list"),
     url(r"^list/(?P<kind_slug>[-\w]+)/", "schedule_presentation_list", name="schedule_presentation_list"),
     url(r"^tutorials/", "schedule_tutorials", name="schedule_tutorials"),
     url(r"^conference/$", "schedule_conference", name="schedule_conference"),

@@ -779,9 +779,13 @@ table.proposals {
   background: #fff;
   border: 1px solid #ccc;
   clear: both;
+  line-height: 1.5em;
   margin-bottom: 20px;
   padding: 20px;
   position: relative;
+  ul {
+    margin-bottom: 1em;
+  }
 }
 .sponsors {
   border-bottom: 1px dotted rgba(243, 243, 242, 0.7);
@@ -1161,8 +1165,8 @@ table.proposals {
 }
 
 .talk_detail {
-  .description, .abstract {
-    width: 640px;
+  .abstract {
+    .proposal-markdown;
   }
   #personal {
     text-transform: uppercase;
@@ -1175,10 +1179,9 @@ table.proposals {
       font-style: italic;
       color: #7e95c4;
     }
-    a.bookmark {
-      display: block;
-      position: absolute;
-      width: 21px;
+    a.bookmark, a.bookmarked {
+      display: inline-block;
+      width: 18px;
       height: 38px;
       right: 0;
       top: 0;
@@ -1188,21 +1191,17 @@ table.proposals {
       background-position-x: left;
       background-position-y: top;
       background-color: transparent;
+      &:focus, &:hover {
+        outline: 0!important;
+      }
+    }
+    a.bookmark {
       background-image: url(../img/bookmark_inactive.png);
+      &:focus, &:hover {
+        background-color: rgba(216, 221, 231, 0.8) !important;
+      }      
     }
     a.bookmarked {
-      display: block;
-      position: absolute;
-      width: 21px;
-      height: 38px;
-      right: 0;
-      top: 0;
-      background: transparent;
-      border: none;
-      background-repeat: no-repeat;
-      background-position-x: left;
-      background-position-y: top;
-      background-color: transparent;
       background-image: url(../img/bookmark.png);
     }
   }
@@ -1217,43 +1216,56 @@ table.proposals {
     line-height: 1.0em;
   }
   .meta {
-    width: 640px;
+    font-size: 0.65em;
     text-transform: uppercase;
-    font-size: 0.875em;
+    text-align: center;
   }
 }
 
-.full_schedule #main_content .schedule_table {
+
+
+.full_schedule #main_content .schedule-table {
+  .conf-date {
+    border-bottom: none;
+    font-size: 1.2em;
+    position: absolute;
+    left: 0px;
+    th {
+      border-bottom: none;
+      width: 180px;
+    }
+  }
+}
+
+.full_schedule #main_content .conference-table {
   display: table;
   padding-left: 0;
   padding-right: 0;
   td.plenary .speaker, td.plenary td.recess .title, td.recess td.plenary .title {
     margin-left: 0;
   }
-  tr {
-    border-bottom: 1px solid #7e95c4;
+  td, th {
+    border-bottom: 1px solid #cdcdcd;
   }
-  tr:last-child {
+  tr:last-child td {
     border-bottom: none;
   }
   th {
     width: 72px;
-    padding: 0;
+    padding: 15px;
   }
-  th.trackheader {
+  .track-header th {
     text-transform: uppercase;
-    font-size: 0.875em;
-    width: 310px;
-    padding: 0 20px 0 0;
-    line-height: 1.5em;
+    font-size: 1.25em;
+    padding: 15px;
   }
-  th.trackheader:last-child {
+  .track-header th:last-child {
     padding-right: 0;
   }
   .speaker {
     text-transform: uppercase;
     line-height: 1.0em;
-    font-size: 0.8em;
+    font-size: 0.9em;
     margin-bottom: 1em;
     color: #456097;
     color: rgba(69,96,151,0.7);
@@ -1264,7 +1276,8 @@ table.proposals {
     .title {
       text-transform: uppercase;
       line-height: 1.0em;
-      font-size: 0.8em;
+      font-size: 0.95em;
+      font-weight: bold;
       margin-bottom: 1em;
       margin-bottom: 0;
       color: #456097;
@@ -1286,19 +1299,18 @@ table.proposals {
     }
   }
   td {
+    float: none;
     width: 310px;
-    padding: 15px 20px 15px 0;
+    padding: 15px;
     vertical-align: top;
     margin: 0;
-    border: none;
     position: relative;
   }
   td.time {
     text-transform: uppercase;
-    font-size: 0.8em;
     line-height: 1.0em;
     width: 72px;
-    padding: 15px 0;
+    padding: 15px;
     vertical-align: top;
     color: #456097;
     color: rgba(69,96,151,0.7);
@@ -1308,17 +1320,15 @@ table.proposals {
     padding-right: 0;
     background: transparent url(../img/light_diagonal_stripe.png) repeat;
     .title {
-      font-size: 1.6em;
+      font-size: 1.7em;
       line-height: 1em;
     }
     > * {
       padding-left: 2px;
     }
   }
-  td:last-child {
-    padding-right: 0;
-  }
-  .badge {
+  a.bookmark, a.bookmarked {
+    .border-radius(0);
     position: relative;
     margin: 0 5px 0 0;
     padding: 0;
@@ -1331,26 +1341,23 @@ table.proposals {
     background-position-x: left;
     background-position-y: -4px;
     background-color: transparent;
+    background-image: url(../img/bookmark_inactive.png);
+    border: none;
     .transition(all 0.2s ease);
-    a {
-      background: transparent;
-      display: block;
-      width: 100%;
-      height: 38px;
-      border: none;
+    &:focus, &:hover {
+      outline: 0!important;
+    }
+    &:focus, &:hover {
+      background-color: rgba(216, 221, 231, 0.8) !important;
     }
   }
-  .badge:hover {
-    background-position-y: top;
-  }
-  .badge.bookmark {
-    background-image: url(../img/bookmark_inactive.png);
-  }
-  .badge.bookmarked {
+  a.bookmarked {
     background-image: url(../img/bookmark.png);
     background-position-y: top;
-  }
+  } 
 }
+
+
 #review-box li {
   list-style-type: none;
 }
