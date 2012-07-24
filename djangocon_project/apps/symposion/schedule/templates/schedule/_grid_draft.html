@@ -31,8 +31,8 @@
                                 {% endif %}
                             {% endif %}
                             {% if slot.content %}
-                                {% if slot.content.speaker %}
-                                    <div class="speaker">{{ slot.content.speaker }}</div>
+                                {% if slot.content.speakers %}
+                                <div class="speaker">{{ slot.content.speakers|join:", " }}</div>
                                 {% endif %}                            
                                 <div class="title"><a href="{% url schedule_presentation slot.content.pk %}">{{ slot.content.title }}</a></div>
                             {% endif %}
