@@ -249,16 +249,17 @@ hr {
 
 #site_nav {
   float: right;
-  font-size: 18px;
-  font-family: @headingsFontFamily;
+  font-size: 13.5px;
+  font-family: @altFontFamily;
   letter-spacing: -1px;
   margin: 14px 0 0;
   text-align: center;
-  max-width: 556px;
+  max-width: 568px;
 }
 #site_nav a {
   color: #c32f24;
   font-size: 1em;
+  font-weight: normal;
 }
 #site_nav a:hover {
   color: #999;
@@ -290,19 +291,17 @@ hr {
   vertical-align: middle;
   *vertical-align: auto;
   white-space: nowrap;
-  padding-left: 6px;
-  padding-right: 6px;
-}
-#site_nav ul li {
   *display: inline;
-}
-#site_nav ul li {
-  border-right: 2px solid #c32f24;
+  border-right: 1px solid #c32f24;
   float: left;
-  padding: 0 8px;
+  padding: 0 6px;
 }
 #site_nav ul li:last-child {
   border-right: 0;
+  padding-right: 0;
+}
+#site_nav ul li:first-child {
+  padding-left: 0;
 }
 #footer {
   clear: both;

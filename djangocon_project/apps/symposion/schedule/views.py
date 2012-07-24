@@ -40,8 +40,6 @@ CONFERENCE_TAGS = getattr(settings, "CONFERENCE_TAGS", [])
 def hash_for_user(user):
     return hashlib.sha224(settings.SECRET_KEY + user.username).hexdigest()
 
-#@login_required
-@staff_member_required
 def schedule_list(request, template_name="schedule/schedule_list.html", extra_context=None):
     
     if extra_context is None:
@@ -55,7 +53,6 @@ def schedule_list(request, template_name="schedule/schedule_list.html", extra_co
         "timezone": settings.SCHEDULE_TIMEZONE,
     }, **extra_context), context_instance=RequestContext(request))
 
-@staff_member_required
 def schedule_presentation(request, presentation_id, template_name="schedule/presentation_detail.html", extra_context=None):
     
     if extra_context is None:
@@ -74,7 +71,6 @@ def schedule_presentation(request, presentation_id, template_name="schedule/pres
         "timezone": settings.SCHEDULE_TIMEZONE,
     }, **extra_context), context_instance=RequestContext(request))
 
-@staff_member_required
 def schedule_presentation_list(request, kind_slug):
 
     kind = get_object_or_404(PresentationKind, slug=kind_slug, published=True)
@@ -85,7 +81,6 @@ def schedule_presentation_list(request, kind_slug):
         "kind": kind,
     }), context_instance=RequestContext(request))
 
-@staff_member_required
 def schedule_tutorials(request):
     
     tutorials = {
@@ -174,8 +169,7 @@ class Timetable(object):
         return times.index(end) - times.index(start)
 
 
-#@login_required
-@staff_member_required
+@login_required
 def schedule_conference_edit(request):
     if not request.user.is_staff:
         return redirect("schedule_conference")
@@ -190,8 +184,6 @@ def schedule_conference_edit(request):
     ctx = RequestContext(request, ctx)
     return render_to_response("schedule/conference_edit.html", ctx)
 
-#@login_required
-@staff_member_required
 def schedule_conference(request):
     
     if request.user.is_authenticated():
@@ -217,8 +209,7 @@ def schedule_conference(request):
     return render_to_response("schedule/conference.html", ctx)
 
 
-#@login_required
-@staff_member_required
+@login_required
 def schedule_slot_add(request, slot_id, kind):
     
     if not request.user.is_staff:
@@ -252,8 +243,7 @@ def schedule_slot_add(request, slot_id, kind):
     return render_to_response("schedule/slot_place.html", ctx)
 
 
-#@login_required
-@staff_member_required
+@login_required
 def schedule_slot_edit(request, slot_id):
     
     if not request.user.is_staff:
@@ -288,8 +278,7 @@ def schedule_slot_edit(request, slot_id):
     return render_to_response("schedule/slot_place.html", ctx)
 
 
-#@login_required
-@staff_member_required
+@login_required
 def schedule_slot_remove(request, slot_id):
     
     if not request.user.is_staff:
@@ -345,7 +334,6 @@ def session_list(request):
         "sessions": sessions,
     }, context_instance=RequestContext(request))
 
-@staff_member_required
 def session_detail(request, session_id):
     
     session = get_object_or_404(Session, id=session_id)
@@ -402,8 +390,7 @@ def session_detail(request, session_id):
     }, context_instance=RequestContext(request))
 
 
-#@login_required
-@staff_member_required
+@login_required
 def schedule_user_slot_manage(request, presentation_id):
     if request.method == "POST":
         if request.POST["action"] == "add":
@@ -422,7 +409,6 @@ def schedule_user_slot_manage(request, presentation_id):
         return HttpResponseNotAllowed(["POST"])
 
 
-@staff_member_required
 def schedule_export_speaker_data(request):
     speakers = set()
     data = ""
@@ -489,7 +475,6 @@ def json_serializer(obj):
         return list(obj.timetuple())
     raise TypeError
 
-@staff_member_required
 def schedule_json(request):
     slots = Slot.objects.all().order_by("start")
 
