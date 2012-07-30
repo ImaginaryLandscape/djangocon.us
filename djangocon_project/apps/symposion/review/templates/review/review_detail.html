@@ -104,12 +104,12 @@
             <h3>Review Comments</h3>
             {% for review in reviews %}
                 <div class="review-box">
-                    <div class="vote">Vote: <b>{{ review.vote }}</b></div>
-                    <div class="comment">{{ review.comment|safe }}</div>
                     <div class="dateline">
                         <b>{{ review.user }}</b> {{ review.submitted_at|timesince }} ago
                         {% if is_reviewer_admin %}<form method="POST" action="{% url review_delete review.pk %}" class="delete-comment">{% csrf_token %}<input type="submit" value="delete" /></form>{% endif %}
                     </div>
+                    <div class="vote">Vote: <b>{{ review.vote }}</b></div>
+                    <div class="comment">{{ review.comment|safe }}</div>                    
                 </div>
                 <div class="clear"></div>
             {% endfor %}
@@ -135,12 +135,12 @@
         {% endif %}
 
     {% if proposal.messages.all %}
-    <div><strong>Conversation with Reviewers</strong><br />
+    <div><h3>Conversation with Reviewers</h3>
       <ul id="review-box">
       {% for message in proposal.messages.all %}
         <li>
-            {{ message.message|striptags }}
             <div class="dateline"><b>{{ message.user }}</b> {{ message.submitted_at|timesince }} ago</div>
+            {{ message.message|urlize }}
         </li>
       {% endfor %}
       </ul>
