@@ -31,6 +31,7 @@ urlpatterns = patterns("",
     url(r"^creole_preview/$", creole_preview, name="creole_preview"),
     url(r'^markitup/', include('markitup.urls')),
     url(r'^galleries/', include('photologueext.urls')),
+    url(r"^wiki/", include("wakawaka.urls")),
 )
 
 if settings.SERVE_MEDIA:

@@ -2,13 +2,6 @@
 <section class="sponsors">
     <header></header>
     <div id="sponsor-slideshow">
-    {% sponsors "producer" as sponsors %}
-    {% if sponsors %}
-    <section title="Produced By">
-      {% include "_sponsor_row.html" %}
-    </section>
-    {% endif %}
-    
     {% sponsors "kryptonite" as sponsors %}
     {% if sponsors %}
     <section title="Kryptonite Sponsors">
@@ -43,12 +36,19 @@
       {% include "_sponsor_row.html" %}
     </section>
     {% endif %}
-    
-    {% sponsors "media" as sponsors %}
+
+    {% sponsors "supporting" as sponsors %}
     {% if sponsors %}
-    <section title="Media Sponsors">
+    <section title="Supporting Sponsors">
       {% include "_sponsor_row.html" %}
     </section>
+    {% endif %}
+
+    {% sponsors "producer" as sponsors %}
+    {% if sponsors %}
+    <section title="Produced By">
+      {% include "_sponsor_row.html" %}
+      </section>
     {% endif %}
     </div>
     <footer id="sponsor-links">

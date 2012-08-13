@@ -58,7 +58,7 @@
                 <div>
                 {% for sponsor in sponsors %}
                 {% if forloop.counter|divisibleby:9 %}</div><div>{% endif %}
-                    <a href="{{ sponsor.external_url }}">{% thumbnail sponsor.website_logo "112x70" as im %}<img src="{{ im.url }}" alt="{{ sponsor.name }}"/>{% endthumbnail %}</a>
+                    <a href="{{ sponsor.external_url }}">{% thumbnail sponsor.website_logo "100x70" crop="center" as im %}<img src="{{ im.url }}" alt="{{ sponsor.name }}"/>{% endthumbnail %}</a>
                 {% endfor %}
                 </div>
             </section>

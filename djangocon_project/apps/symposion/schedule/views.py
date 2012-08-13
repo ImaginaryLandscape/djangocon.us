@@ -482,7 +482,7 @@ def schedule_json(request):
     for slot in slots:
         try:
             tags = []
-            tags.append(slot.presentation.presentation_type.slug)
+            tags.append(slot.presentation.kind.slug)
             tags.append(Presentation.AUDIENCE_LEVELS[slot.presentation.audience_level - 1][1].lower())
             tags.extend(CONFERENCE_TAGS)
             data.append({
@@ -497,11 +497,11 @@ def schedule_json(request):
                     slot.presentation.speakers()
                 )),
                 "description": slot.presentation.description,
-                "abstract": slot.presentation.abstract,
+                "abstract": slot.presentation.abstract.rendered,
                 "id": slot.pk,
                 "url": "http://%s%s" % (Site.objects.get_current().domain, slot.presentation.get_absolute_url()),
                 "tags": ", ".join(tags),
-                "last_updated": slot.presentation.last_updated,
+#                "last_updated": slot.presentation.last_updated,
 
                 # Add some fields for Carl
                 "license": "",
@@ -514,7 +514,7 @@ def schedule_json(request):
                     lambda s: s.name,
                     slot.presentation.speakers()
                 )),
-                "last_updated_iso": slot.presentation.last_updated.isoformat(),
+#                "last_updated_iso": slot.presentation.last_updated.isoformat(),
                 "contact": "", # not sure if this is ok to be shared.
             })
         except Presentation.DoesNotExist:

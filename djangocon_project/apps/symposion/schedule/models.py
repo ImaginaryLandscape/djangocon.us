@@ -172,7 +172,11 @@ class Presentation(models.Model):
         yield self.speaker
         for speaker in self.additional_speakers.all():
             yield speaker
-    
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('symposion.schedule.views.schedule_presentation', [str(self.id)])
+
     def __unicode__(self):
         return u"%s" % self.title
 
