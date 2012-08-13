@@ -12,6 +12,8 @@ TEMPLATE_DEBUG = DEBUG
 
 DEFAULT_FROM_EMAIL = "webmaster@djangocon.us"
 
+CONTACT_EMAIL = "djangocon@holdenweb.com"
+
 # tells Pinax to serve media through the staticfiles app.
 SERVE_MEDIA = DEBUG
 
