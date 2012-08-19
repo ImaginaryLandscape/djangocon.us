@@ -1,9 +1,9 @@
-================================
-DjangoCon US website by Eldarion
-================================
+====================
+DjangoCon US website
+====================
 
-This repository stores the DjangoCon US website developed by Eldarion. This
-project is open source and the license can be found in LICENSE.
+This repository stores the DjangoCon US website developed by Eldarion, modifed by Imagescape.
+This project is open source and the license can be found in LICENSE.
 
 
 Installation
@@ -14,6 +14,35 @@ To get setup with djangcon code you must have the follow installed:
  * Python 2.6+
  * virtualenv 1.4.7+
  * C compiler (for PIL)
+
+Node and Less
+-------------
+This project uses django-compressor with less files which requires nodejs and lessc installed.
+
+Check node and lessc version
+
+    node -v & lessc -v
+
+Installing Node.js::
+
+    wget http://nodejs.org/dist/v0.9.0/node-v0.9.0.tar.gz
+
+    tar xfvz node-xx.tar.gz
+    cd node-xx
+
+    ./configure
+    make
+    make install
+
+Installing lesscss::
+
+    wget --no-check-certificate https://github.com/cloudhead/less.js/tarball/master
+
+    tar xfvz master
+    mv cloudhead-less.js-version  /usr/local/lesscss
+
+    cd /usr/local/bin/
+    ln -s ../lesscss/bin/lessc
 
 Setting up environment
 ----------------------

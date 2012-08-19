@@ -7,7 +7,7 @@ import posixpath
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 DEPLOYMENT_ROOT = os.path.join(PROJECT_ROOT, '..', '..', '..')
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 DEFAULT_FROM_EMAIL = "webmaster@djangocon.us"
