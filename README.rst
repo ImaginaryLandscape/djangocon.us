@@ -17,9 +17,9 @@ To get setup with djangcon code you must have the follow installed:
 
 Node and Less
 -------------
-This project uses django-compressor with less files which requires nodejs and lessc installed.
+This project uses django-compressor with less files which requires nodejs and lessc are installed.
 
-Check node and lessc version
+Check node and lessc version::
 
     node -v & lessc -v
 
