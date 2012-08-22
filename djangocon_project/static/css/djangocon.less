@@ -1438,11 +1438,22 @@ ol.steps {
     }
   }
 
-  .full-schedule {
-    #main-content {
+  .full_schedule {
+    #main_content {
       .conference-table {
         margin-left: 2%;
         width: 95%;
+
+        td {
+          width: 45%;
+          
+          &.time {
+            width: 7%;
+          }
+          &.plenary {
+            width: 100%;
+          }
+        }
       }
     }
   }
@@ -1524,6 +1535,10 @@ ol.steps {
   #main_content {
     max-width: 100%;
     width: 100%;
+
+    table {
+      width: 100%;
+    }
 
     .box {
       margin: 0;
