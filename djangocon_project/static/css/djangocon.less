@@ -1,5 +1,6 @@
 // Bootstrap //
 @import "twitter/bootstrap.less"; 
+@import "twitter/responsive.less";
 
 // Bootstrap Overrides //
 @import "custom-variables.less"; 
@@ -1397,5 +1398,209 @@ ol.steps {
       text-shadow: none;
       text-decoration: line-through;
     }
+  }
+}
+
+// RESPONSIVE BITS
+// ----------------
+
+// Up to landscape phone
+@media (max-width: 480px) {
+}
+
+// Landscape phone to small desktop & portrait tablet
+@media (max-width: 767px) {
+    body {
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  hr {
+    background: url(../img/sprites.png) no-repeat -285px -124px;
+    width: 100%;
+  }
+
+  .home {
+
+    #site_header {
+      background: none;
+      height: auto;
+
+      h1 {
+        background: url(../img/sprites.png) no-repeat -25px 0;
+        background-size: auto;
+        min-height: 125px;
+      }
+
+      #site_nav {
+        margin: 10px 5% 0;
+      }
+    }
+  }
+
+  .full_schedule {
+    #main_content {
+      .conference-table {
+        margin-left: 2%;
+        width: 95%;
+
+        td {
+          width: 45%;
+          
+          &.time {
+            width: 7%;
+          }
+          &.plenary {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  #site_header {
+    background-position: -70px -161px;
+    max-width: 100%;
+    padding: 5px 0 0;
+    overflow: hidden;
+    width: 100%;
+
+    h1 {
+      display: block;
+      float: none;
+      max-width: 100%;
+      width: 100%;
+    }
+
+    #account-bar {
+      position: static;
+    }
+
+    #site_nav {
+      display: block;
+      float: none;
+      margin: 10px 5% 0;
+      max-width: 100%;
+      width: 100%;
+
+      ul {
+        overflow: hidden;
+        white-space: normal;
+
+        li {
+          margin-bottom: 1em;
+          padding: 0;
+          white-space: nowrap;
+
+          a {
+            display: block;
+            font-size: 1.5em;
+            padding: 0 6px;
+          }
+        }
+      }
+    }
+  }
+
+  #tagline {
+    h1 {
+      padding-left: 0;
+      text-align: center;
+    }
+  }
+  #date_blocks {
+    background: url(../img/sprites.png) no-repeat -210px -230px;
+    height: auto;
+    max-width: 100%;
+    overflow: hidden;
+    padding: 8px 0 8px 100px;
+    width: 100%;
+  }
+  #date_blocks .dateblock {
+    float: left;
+    padding: 0 2%;
+    width: 45%;
+  }
+  #date_blocks .dateblock.last {
+    padding: 0 2%;
+  }
+  #date_blocks .dateblock h2 {
+    font-size: 2em;
+  }
+  #date_blocks .dateblock h3 {
+    font-size: 1em;
+    line-height: 1.2;
+    text-align: center;
+  }
+  #main_content {
+    max-width: 100%;
+    width: 100%;
+
+    table {
+      width: 100%;
+    }
+
+    .box {
+      margin: 0;
+
+      &.first {
+        margin-top: 30px;
+      }
+
+      & > h2 {
+        display: block;
+        float: none;
+        margin-left: none;
+        text-indent: 10%;
+        width: 100%;
+      }
+
+      & > p {
+        display: block;
+        float: none;
+        padding: 0.5em 1em;
+        width: auto;
+      }
+    }
+  }
+}
+
+// Portrait tablet
+@media (min-width: 768px) {
+
+}
+
+// Tablets and below
+@media (max-width: 979px) {
+}
+
+// Small portrait phones
+@media (max-width: 320px) {
+  hr {
+    background: url(../img/sprites.png) no-repeat -373px -124px;
+    width: 100%;
+  }
+
+  .home {
+
+    #site_header {
+      background: none;
+      height: auto;
+
+      h1 {
+        background: url(../img/sprites.png) no-repeat -77px 0;
+        background-size: 300%;
+        min-height: 125px;
+      }
+    }
+  }
+
+  #date_blocks {
+    background: url(../img/sprites.png) no-repeat -290px -230px;
+  }
+
+  #page_footer {
+    margin-left: auto;
+    width: 90%;
   }
 }
