@@ -328,17 +328,17 @@ hr {
     color: #404040;
   }
   #page_sponsors {
+    width: @gridRowWidth;
     div {
       margin: 12px 0 20px;
       overflow: hidden;
-      width: 100%;
     }   
     h3 {
       .sectionhd;
     }
     a {
       float: left;
-      margin: 0 8px 8px;
+      margin: 0 8px 16px;
       img {
         position: relative;
         z-index: -1;
@@ -1414,7 +1414,7 @@ ol.steps {
     max-width: 100%;
     width: 100%;
   }
-  
+
   hr {
     background: url(../img/sprites.png) no-repeat -285px -124px;
     width: 100%;
@@ -1563,6 +1563,11 @@ ol.steps {
       }
     }
   }
+#page_footer {
+  #page_sponsors {
+    width: 100%;
+  }
+}
 }
 
 // Portrait tablet
