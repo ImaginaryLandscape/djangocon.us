@@ -53,7 +53,7 @@
             </div>
             
             <h1><a href="{% url home %}">{{ SITE_NAME }}</a></h1>
-            <h2><a href="{% url home %}"><span style="font-weight: 200;">Some amazing location, February 31st</span></a></h2>
+            <h2><a href="{% url home %}"><span style="font-weight: 200;">September in Chicago, IL</span></a></h2>
         </header>
         <div class="navbar">
             <div class="navbar-inner">
@@ -86,6 +86,7 @@
             <div class="row">
                 <div class="span9">
                     {% block body %}
+                        {% block content %}{% endblock %}
                     {% endblock %}
                 </div>
                 <div class="span3">

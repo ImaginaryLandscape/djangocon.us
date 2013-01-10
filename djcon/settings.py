@@ -133,6 +133,7 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     "django.contrib.messages.context_processors.messages",
     "pinax_utils.context_processors.settings",
     "account.context_processors.account",
+    "photologueext.context_processors.media",
 ]
 
 INSTALLED_APPS = [
@@ -154,6 +155,7 @@ INSTALLED_APPS = [
     "django_forms_bootstrap",
     
     # external
+    "south",
     "compressor",
     "debug_toolbar",
     "mailer",
@@ -165,6 +167,10 @@ INSTALLED_APPS = [
     "easy_thumbnails",
     "sitetree",
     "account",
+    "photologueext",
+    "photologue",
+    "filer",
+    "wakawaka",
     
     # symposion
     "symposion",
@@ -179,6 +185,10 @@ INSTALLED_APPS = [
     # project
     "djcon.proposals",
 ]
+
+PHOTOLOGUEEXT_DISABLE_WATERMARKS = True
+PHOTOLOGUEEXT_M2M_THUMBNAILS = True
+PHOTOLOGUEEXT_ONE_GALLERY_PER_PHOTO = True
 
 FIXTURE_DIRS = [
     os.path.join(PROJECT_ROOT, "fixtures"),
@@ -217,6 +227,10 @@ EMAIL_DEBUG = DEBUG
 DEBUG_TOOLBAR_CONFIG = {
     "INTERCEPT_REDIRECTS": False,
 }
+
+WAKAWAKA_DEFAULT_INDEX = "index"
+WAKAWAKA_SLUG_REGEX = r"((\w{2,})(/\w{2,})*)" # allow lower case wiki page names
+WAKAWAKA_LOCK_TIMEOUT = 10*60
 
 MARKITUP_FILTER = ("markdown.markdown", {"safe_mode": True})
 MARKITUP_SET = "markitup/sets/markdown"

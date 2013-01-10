@@ -31,6 +31,8 @@ urlpatterns = patterns("",
     url(r"^boxes/", include("symposion.boxes.urls")),
     url(r"^teams/", include("symposion.teams.urls")),
     url(r"^markitup/", include("markitup.urls")),
+    url(r'^galleries/', include('photologueext.urls')),
+    url(r"^wiki/", include("wakawaka.urls")),
     
     url(r"^", include("symposion.cms.urls")),
 )
