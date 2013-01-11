@@ -9,5 +9,17 @@
 
 {% block body %}
     {% box "homepage" %}
+
+{% load newscenter_tags %}
+{% get_news "blog" %}
+<h1><a href="{{ newsroom.get_absolute_url }}">{{ newsroom.name }}</a></h1>
+{% for release in featured_list %}
+<article>
+<h2>{{ release.title }}</h2>
+<p class="teaser">{{ release.teaser }}</p>
+<p><a href="{{ release.get_absolute_url }}">Read more</a></p>
+</article>
+{% endfor %}
+    
     &nbsp;
 {% endblock %}

@@ -145,6 +145,7 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.sitemaps",
     "django.contrib.humanize",
     
     'gunicorn',
@@ -171,6 +172,7 @@ INSTALLED_APPS = [
     "photologue",
     "filer",
     "wakawaka",
+    "newscenter",
     
     # symposion
     "symposion",
