@@ -173,6 +173,7 @@ INSTALLED_APPS = [
     "filer",
     "wakawaka",
     "newscenter",
+    "tinymce",
     
     # symposion
     "symposion",
@@ -191,6 +192,13 @@ INSTALLED_APPS = [
 PHOTOLOGUEEXT_DISABLE_WATERMARKS = True
 PHOTOLOGUEEXT_M2M_THUMBNAILS = True
 PHOTOLOGUEEXT_ONE_GALLERY_PER_PHOTO = True
+
+TINYMCE_DEFAULT_CONFIG = {
+    'convert_urls': False,
+    'theme': "advanced",
+    'height': 355,
+    'width': 740
+}
 
 FIXTURE_DIRS = [
     os.path.join(PROJECT_ROOT, "fixtures"),
