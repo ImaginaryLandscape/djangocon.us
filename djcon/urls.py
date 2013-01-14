@@ -33,7 +33,7 @@ urlpatterns = patterns("",
     url(r"^markitup/", include("markitup.urls")),
     url(r'^galleries/', include('photologueext.urls')),
     url(r"^wiki/", include("wakawaka.urls")),
-    url(r"^", include("newscenter.urls")),    
+    url(r"^newscenter/", include("newscenter.urls")),    
     url(r"^", include("symposion.cms.urls")),
 )
 
