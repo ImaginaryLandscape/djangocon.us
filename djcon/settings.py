@@ -227,6 +227,9 @@ AUTHENTICATION_BACKENDS = [
     
     # Auth backends
     "account.auth_backends.EmailAuthenticationBackend",
+
+    'django.contrib.auth.backends.ModelBackend',
+    
 ]
 
 LOGIN_URL = "/account/login/" # @@@ any way this can be a url name?
