@@ -1,25 +1,72 @@
 {% extends "site_base.html" %}
 
 {% load i18n %}
-{% load boxes_tags %}
+{% load boxes_tags static %}
 
 {% block head_title %}{% trans "Welcome" %}{% endblock %}
 
 {% block body_class %}home{% endblock %}
 
-{% block body %}
-    {% box "homepage" %}
+{% block content %}
+<section class="row-fluid">
+  <div id="blog"class="span6">
+    {% load newscenter_tags %}
+    {% get_news "blog" %}
+    <h2><a href="{{ newsroom.get_absolute_url }}">Blog</a></h2>
+    {% for release in featured_list %}
+    <article>
+    <h2>{{ release.title }}</h2>
+    <p class="teaser">{{ release.teaser }}</p>
+    <p><a href="{{ release.get_absolute_url }}">Read more</a></p>
+    </article>
+    {% endfor %}
+  </div>
 
-{% load newscenter_tags %}
-{% get_news "blog" %}
-<h1><a href="{{ newsroom.get_absolute_url }}">{{ newsroom.name }}</a></h1>
-{% for release in featured_list %}
-<article>
-<h2>{{ release.title }}</h2>
-<p class="teaser">{{ release.teaser }}</p>
-<p><a href="{{ release.get_absolute_url }}">Read more</a></p>
-</article>
-{% endfor %}
-    
-    &nbsp;
+  <div id="sponsors" class="span6">
+  {% load sponsorship_tags %}
+  {% load thumbnail %}
+  {% sponsor_levels as levels %}
+  <h2>Sponsors</h2>
+  <div class="sponsor-list">
+    {% for level in levels %}
+      {% if level.sponsors %}
+        <h3 style="margin-top: 3em;">{{ level.name }}</h3>
+        {% for sponsor in level.sponsors %}
+        <div style="margin: 10px 0;">
+          <a href="{{ sponsor.external_url }}"><img src="{% thumbnail sponsor.website_logo '100x60' %}" alt="{{ sponsor.name }}" /></a>
+        </div>
+        {% endfor %}
+      {% endif %}
+  {% endfor %}
+  </div>
+</section>
+
+<section id="register"><h2>Register</h2>{% box "register" %}</section>
+<section id="schedule"><h2>Schedule</h2>{% box "schedule" %}</section>
+<section id="venue"><h2>Venue</h2>{% box "venue" %}</section>
+<section id="lightning-talks"><h2>Lightning Talks</h2>{% box "lightning-talks" %}</section>
+<section id="sprints"><h2>Sprints</h2>{% box "sprints" %}</section>
+<section id="open-spaces"><h2>Open Spaces</h2>{% box "open-spaces" %}</section>
+<section id="about"><h2>About</h2>{% box "about" %}</section>
+<section id="tutorials"><h2>Tutorials</h2>{% box "tutorials" %}</section>
+<section id="credits"><h2>Credits</h2>{% box "credits" %}</section>
 {% endblock %}
+
+{% block extra_script %}
+  <script src="{% static "js/jquery.ba-throttle-debounce.js" %}"></script>
+  <script src="{% static "js/scrollToTop.js" %}"></script>
+  <script>
+  $(document).ready(function(){
+    $("#content section").each(function(){
+        if($(this).height() < $(window).height()){
+            $(this).height($(window).height());
+        }
+    });
+    ScrollToTop.init();
+    $(window).resize(function(){
+//        ScrollToTop.init();
+    });
+  });
+  </script>
+{% endblock %}
+

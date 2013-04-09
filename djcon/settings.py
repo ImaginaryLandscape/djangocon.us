@@ -21,6 +21,16 @@ SERVE_MEDIA = DEBUG
 # django-compressor is turned off by default due to deployment overhead for
 # most users. See <URL> for more information
 COMPRESS = False
+COMPRESS_OUTPUT_DIR = ''
+COMPRESS_PRECOMPILERS = (
+    ('text/less', 'lessc {infile} {outfile}'),
+)
+COMPRESS_CSS_FILTERS = [
+    'compressor.filters.cssmin.CSSMinFilter'
+]
+COMPRESS_JS_FILTERS = [
+    'compressor.filters.jsmin.JSMinFilter'
+]
 
 INTERNAL_IPS = [
     "127.0.0.1",
@@ -35,7 +45,7 @@ MANAGERS = ADMINS
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3", # Add "postgresql_psycopg2", "postgresql", "mysql", "sqlite3" or "oracle".
-        "NAME": "dev.db",                       # Or path to database file if using sqlite3.
+        "NAME": os.path.join(PROJECT_ROOT, "djcon.sql"), # Or path to database file if using sqlite3.
         "USER": "",                             # Not used with sqlite3.
         "PASSWORD": "",                         # Not used with sqlite3.
         "HOST": "",                             # Set to empty string for localhost. Not used with sqlite3.
@@ -85,6 +95,7 @@ STATICFILES_DIRS = [
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    "django.contrib.staticfiles.finders.DefaultStorageFinder",
     "compressor.finders.CompressorFinder",
 ]
 
@@ -92,9 +103,6 @@ STATICFILES_FINDERS = [
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
 ADMIN_MEDIA_PREFIX = posixpath.join(STATIC_URL, "admin/")
-
-# Subdirectory of COMPRESS_ROOT to store the cached media files in
-COMPRESS_OUTPUT_DIR = "cache"
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = "8*br)9@fs!4nzg-imfrsst&oa2udy6z-fqtdk0*e5c1=wn)(t3"
@@ -119,7 +127,7 @@ MIDDLEWARE_CLASSES = [
 ROOT_URLCONF = "djcon.urls"
 
 TEMPLATE_DIRS = [
-    os.path.join(PACKAGE_ROOT, "templates"),
+    os.path.join(PROJECT_ROOT, "templates"),
 ]
 
 TEMPLATE_CONTEXT_PROCESSORS = [
@@ -171,7 +179,7 @@ INSTALLED_APPS = [
     "photologueext",
     "photologue",
     "filer",
-    "wakawaka",
+#    "wakawaka",
     "newscenter",
     "tinymce",
     

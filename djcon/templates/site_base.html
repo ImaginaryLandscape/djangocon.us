@@ -5,75 +5,65 @@
 {% load sitetree %}
 {% load markitup_tags %}
 {% load static %}
+{% load compress %}
 
-{% block viewport %}{% endblock %}
+{% block viewport %}
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+{% endblock %}
 
 {% block head_title %}{% block title %}{% endblock %}{% endblock %}
 
 {% block style_base %}
-    <link href="{% static "symposion/css/symposion.css" %}" rel="stylesheet">
+    {% compress css %}  
+    <link type="text/css" href="{% static "symposion/css/symposion.css" %}" rel="stylesheet">
+    <link type="text/less" href="{% static "css/djangocon.less" %}" rel="stylesheet">
+    {% endcompress %}
     {% block extra_style %}{% endblock %}
 {% endblock %}
 
 {% block extra_head_base %}
-    <link href="{{ STATIC_URL }}img/favicon.ico" rel="shortcut icon" />
+    <link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.png" />
+    <link rel="apple-touch-icon" href="{{ STATIC_URL }}img/logo-final-icon.png" />
     <script src="{% block jquery_src %}{% static "pinax/js/jquery.js" %}{% endblock %}"></script>
     {% markitup_media "no-jquery" %}
     {% block extra_head %}{% endblock %}
 {% endblock %}
 
 {% block topbar_base %}
-    <div class="container">
         <header id="masthead">
-            <div class="pull-right">
-                <ul class="nav nav-pills">
-                    {% if not request.user.is_authenticated %}
-                        <li>
-                            <a href="{% url account_login %}">Log in</a>
-                        </li>
-                        <li>
-                            <a href="{% url account_signup %}">Sign up</a>
-                        </li>
-                    {% else %}
-                        <li>
-                            <a href="{% url dashboard %}">Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="{% url account_settings %}">Settings</a>
-                        </li>
-                        {% if request.user.is_staff %}
-                            <li>
-                                <a href="{% url admin:index %}">Admin</a>
-                            </li>
-                        {% endif %}
-                        <li>
-                            <a id="logout_link" href="{% url account_logout %}" data-form-submit="#account_logout_form">Log out</a>
-                        </li>
-                        <form id="account_logout_form" class="hide" action="{% url account_logout %}" method="post">{% csrf_token %}</form>
-                    {% endif %}
-                </ul>
-            </div>
-            
-            <h1><a href="{% url home %}">{{ SITE_NAME }}</a></h1>
-            <h2><a href="{% url home %}"><span style="font-weight: 200;">September in Chicago, IL</span></a></h2>
+            <h1><a href="{% url home %}"><img src="{{ STATIC_URL }}img/logo-final.png" alt="{{ SITE_NAME }}"></a></h1>
+            <h2>September 2-7, 2013</h2>
+        
+            <ul class="nav">
+              <li class="register_tab"><a href="/#register">Register</a></li>
+              <li class="schedule_tab"><a href="/#schedule">Schedule</a></li>
+              <li class="venue_tab"><a href="/#venue">Venue</a></li>
+              <li class="lightning_tab"><a href="/#lightning-talks">Lightning Talks</a></li>
+              <li class="sprints_tab"><a href="/#sprints">Sprints</a></li>
+              <li class="openspaces_tab"><a href="/#open-spaces">Open Spaces</a></li>
+              <li class="about_tab"><a href="/#about">About</a></li>
+              <li class="tutorials_tab"><a href="/#tutorials">Tutorials</a></li>
+              <li class="credits_tab"><a href="/#credits">Credits</a></li>
+
+              <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <span class="caret"></span></a>
+                <ul class="dropdown-menu">            
+              {% if not request.user.is_authenticated %}
+                <li><a href="{% url account_login %}">Log in</a></li>
+                <li><a href="{% url account_signup %}">Sign up</a></li>
+              {% else %}
+                <li><a href="{% url dashboard %}">Dashboard</a></li>
+                <li><a href="{% url account_settings %}">Settings</a></li>
+                {% if request.user.is_staff %}
+                  <li><a href="{% url admin:index %}">Admin</a></li>
+                {% endif %}
+                <li><a id="logout_link" href="{% url account_logout %}" data-form-submit="#account_logout_form">Log out</a>
+                <form id="account_logout_form" class="hide" action="{% url account_logout %}" method="post">{% csrf_token %}</form>
+                </li>
+                {% endif %}
+                  </ul>
+                </li>
+          </ul>
         </header>
-        <div class="navbar">
-            <div class="navbar-inner">
-                {% block topbar %}
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <div class="nav-collapse">
-                        {% block nav %}
-                            {% sitetree_menu from "main" include "trunk" template "sitetree/menu_bootstrap.html" %}
-                        {% endblock %}
-                    </div>
-                {% endblock %}
-            </div>
-        </div>
-    </div>
 {% endblock %}
 
 {% block body_base %}
@@ -85,18 +75,14 @@
         {# {% endblock %} #}
         
         {% block body_outer %}
-            <div class="row">
-                <div class="span9">
-                    {% block body %}
-                        {% block content %}{% endblock %}
-                    {% endblock %}
-                </div>
-                <div class="span3">
+            {% block body %}
+                <div id="content">
+                    {% block content %}{% endblock %}
                     {% block sidebar %}
                         {% include "_default_sidebar.html" %}
-                    {% endblock %}
+                    {% endblock %}                    
                 </div>
-            </div>
+            {% endblock %}
         {% endblock %}
     </div>
 {% endblock %}
@@ -109,15 +95,6 @@
     {% analytics %}
     <script src="{% static "bootstrap/js/bootstrap.js" %}"></script>
     <script src="{% static "pinax/js/theme.js" %}"></script>
-    <script type="text/javascript">
-        $(function() {
-            $("#logout_link").on("click", function(e) {
-                var form = $($(this).data("form-submit"));
-                form.submit();
-                return false;
-            });
-            $(".required-field").prepend("<span style='color:red;'>* </div>");
-        });
-    </script>
+    <script src="{% static "js/djangocon.js" %}"></script>
     {% block extra_script %}{% endblock %}
 {% endblock %}
