@@ -56,7 +56,7 @@ var ScrollToTop = {
             if(window.location.hash.length > 1){
               var target = window.location.hash.replace('page-', '');
                   $target = $(target);
-              $('html').stop().animate({
+              $('html, body').stop().animate({
                   'scrollTop': $target.offset().top-navheight
               }, 500, 'swing', function () {
                   console.log('hashchange animation - '+target);
