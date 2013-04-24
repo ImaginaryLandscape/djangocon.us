@@ -1,13 +1,24 @@
+/*
 @font-face {
-    font-family: 'heavyweightregular';
-    src: url('fonts/heavyweight-webfont.eot');
-    src: url('fonts/heavyweight-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/heavyweight-webfont.woff') format('woff'),
-         url('fonts/heavyweight-webfont.ttf') format('truetype'),
-         url('fonts/heavyweight-webfont.svg#heavyweightregular') format('svg');
+    font-family: 'heavyweight';
+    src: url('fonts/heavyweight/heavyweight-webfont.eot');
+    src: url('fonts/heavyweight/heavyweight-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/heavyweight/heavyweight-webfont.woff') format('woff'),
+         url('fonts/heavyweight/heavyweight-webfont.ttf') format('truetype'),
+         url('fonts/heavyweight/heavyweight-webfont.svg#heavyweightregular') format('svg');
     font-weight: normal;
     font-style: normal;
-
+}
+*/
+@font-face {
+    font-family: 'franchise';
+    src: url('fonts/franchise/franchise-bold-webfont.eot');
+    src: url('fonts/franchise/franchise-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/franchise/franchise-bold-webfont.woff') format('woff'),
+         url('fonts/franchise/franchise-bold-webfont.ttf') format('truetype'),
+         url('fonts/franchise/franchise-bold-webfont.svg#franchiseregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
 
 .clearfix {
@@ -28,7 +39,7 @@ body {
   padding: 0;
 }
 h1, h2, h3 {
-  font-weight: normal;
+  font-weight: normal!important;
 }
 #masthead {
   .clearfix;
@@ -42,18 +53,19 @@ h1, h2, h3 {
   }
   h2 {
     color: #ebd5d3;
-    font-family: heavyweightregular;
+    font-family: franchise;
     font-weight: normal;
     margin: -20px 0 20px;
     line-height: normal;
     font-size: 1.85em;
+    text-transform: uppercase;    
   }
   img {
     clear: both;
     max-height: 400px;
   }
 }
-.container {
+.container, .container-fluid {
   width: 100%;
   section {
     background: rgba(0,0,0,.2);
@@ -61,30 +73,8 @@ h1, h2, h3 {
     font-size: 18px;
     line-height: normal;
     padding-top: 20px;
-    &.row-fluid {
-    }
-    &:first-child {
-      background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), url('../img/gehry-fd.jpg') no-repeat 0 0;
-      background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), url('../img/gehry-fd.jpg') no-repeat 0 0;
-      background: linear-gradient(top, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), url('../img/gehry-fd.jpg') no-repeat 0 0;
-      margin-bottom: 0;
-    } 
-    &:nth-child(3) {
-      background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), url('../img/hancock.jpg') no-repeat 0 0;
-      background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), url('../img/hancock.jpg') no-repeat 0 0;
-      background: linear-gradient(top, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), url('../img/hancock.jpg') no-repeat 0 0;
-    }
-    &:nth-child(5) {
-      background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), url('../img/skyline.jpg') no-repeat 0 0;
-      background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), url('../img/skyline.jpg') no-repeat 0 0;
-      background: linear-gradient(top, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), url('../img/skyline.jpg') no-repeat 0 0;
-    }
-
     .content-box {
       background: rgba(255,255,255,.1);
-      * {
-        padding: 20px;
-      }
     }
     &:before {
       background: url('../img/chi-stars.png') no-repeat center;
@@ -100,10 +90,11 @@ h1, h2, h3 {
   p {
     margin-bottom: 1em;
   }
-  h2 {
+  h1, h2, legend {
+    border: none;
     color: #EBD5D3;
     font-size: 54px;
-    font-family: heavyweightregular, verdana, arial, sans-serif;
+    font-family: franchise, verdana, arial, sans-serif;
     letter-spacing: 1px;
     line-height: normal;
     margin-bottom: 1em;
@@ -111,6 +102,7 @@ h1, h2, h3 {
     padding: 30px 1% 2%;
     text-align: center;
     text-shadow: 0 1px 2px rgba(0,0,0,.8);
+    text-transform: uppercase;    
     &:after {
 //      border: 1px solid  rgba(255, 255, 255, 0.08);
       background: rgba(255,255,255,.1);
@@ -128,19 +120,50 @@ h1, h2, h3 {
     }
   }
 }
+#homepage {
+  section {
+    background-size: cover!important;
+    &:first-child {
+      background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), url('../img/gehry-fd.jpg') no-repeat 0 0;
+      background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), url('../img/gehry-fd.jpg') no-repeat 0 0;
+      background: linear-gradient(top, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), url('../img/gehry-fd.jpg') no-repeat 0 0;
+      margin-bottom: 0;
+    }
+    &:nth-child(3) {
+      background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), url('../img/hancock.jpg') no-repeat 0 0;
+      background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), url('../img/hancock.jpg') no-repeat 0 0;
+      background: linear-gradient(top, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), url('../img/hancock.jpg') no-repeat 0 0;
+    }
+    &:nth-child(5) {
+      background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), url('../img/skyline.jpg') no-repeat 0 0;
+      background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), url('../img/skyline.jpg') no-repeat 0 0;
+      background: linear-gradient(top, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), url('../img/skyline.jpg') no-repeat 0 0;
+    }
+  }
+}
+form {
+  legend {
+    color: #fff;
+ }
+} 
+.form-actions {
+  background: none;
+  border: none;
+}
 .nav {
   background: rgba(255,255,255,.25);
   display: table;
-  font-family: heavyweightregular, 'Times New Roman', serif;
+  font-family: franchise, 'Times New Roman', serif;
   font-size: 0;
   height: 42px;
   margin: 0;
   text-align: center;
+  text-transform: uppercase;  
   width: 100%;
   > li {
     display: inline-block;
     float: none;
-    font-size: 19px;
+    font-size: 20px;
     margin: 0 4px;
     vertical-align: middle;
     > a {
@@ -186,6 +209,16 @@ h1, h2, h3 {
       margin-top: 18px;
     }
   }
+  .nav-header {
+    color: #fff;
+    font-size: 20px;
+    font-weight: normal;
+    margin: 1em 0;
+    text-shadow: none!important;
+  }
+}
+.form.actions {
+  background: none;
 }
 body.fixed-nav {
   .nav {
@@ -220,7 +253,7 @@ body.fixed-nav {
     font-size: 12px;
   }
   .container {
-    h2 {
+    h1, h2, legend {
       font-size: 28px;
     }
   }

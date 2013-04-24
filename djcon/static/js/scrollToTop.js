@@ -28,7 +28,7 @@ var ScrollToTop = {
         var mastheight = $("#masthead").height();
         $(window).scroll($.debounce(200, false,
             function() {
-                $('#content section').each(function(){                    
+                $('#homepage section').each(function(){                    
                     var section = $(this);
                     if(section.position().top - $(window).scrollTop() <= ($(window).height() / 2)) {
                         section.addClass('selected');

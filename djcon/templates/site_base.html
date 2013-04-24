@@ -68,13 +68,14 @@
 
 {% block body_base %}
     <div class="container">
+      {% block body_outer %}
+        <section>
         {% include "_messages.html" %}
         
         {# {% block breadcrumbs %} #}
             {# {% sitetree_breadcrumbs from "main" %} #}
         {# {% endblock %} #}
         
-        {% block body_outer %}
             {% block body %}
                 <div id="content">
                     {% block content %}{% endblock %}
@@ -82,7 +83,8 @@
                         {% include "_default_sidebar.html" %}
                     {% endblock %}                    
                 </div>
-            {% endblock %}
+              {% endblock %}
+           </section>
         {% endblock %}
     </div>
 {% endblock %}

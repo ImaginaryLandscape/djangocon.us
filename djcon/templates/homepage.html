@@ -7,7 +7,8 @@
 
 {% block body_class %}home{% endblock %}
 
-{% block content %}
+{% block body_outer %}
+<div id="homepage">
 <section class="row-fluid">
   <div id="blog"class="span6">
     {% load newscenter_tags %}
@@ -15,7 +16,7 @@
     <h2><a href="{{ newsroom.get_absolute_url }}">Blog</a></h2>
     {% for release in featured_list %}
     <article>
-    <h2>{{ release.title }}</h2>
+    <h3>{{ release.title }}</h3>
     <p class="teaser">{{ release.teaser }}</p>
     <p><a href="{{ release.get_absolute_url }}">Read more</a></p>
     </article>
@@ -30,9 +31,9 @@
   <div class="sponsor-list">
     {% for level in levels %}
       {% if level.sponsors %}
-        <h3 style="margin-top: 3em;">{{ level.name }}</h3>
+        <h3>{{ level.name }}</h3>
         {% for sponsor in level.sponsors %}
-        <div style="margin: 10px 0;">
+        <div>
           <a href="{{ sponsor.external_url }}"><img src="{% thumbnail sponsor.website_logo '100x60' %}" alt="{{ sponsor.name }}" /></a>
         </div>
         {% endfor %}
@@ -50,6 +51,7 @@
 <section id="about"><h2>About</h2>{% box "about" %}</section>
 <section id="tutorials"><h2>Tutorials</h2>{% box "tutorials" %}</section>
 <section id="credits"><h2>Credits</h2>{% box "credits" %}</section>
+</div>
 {% endblock %}
 
 {% block extra_script %}
@@ -57,7 +59,7 @@
   <script src="{% static "js/scrollToTop.js" %}"></script>
   <script>
   $(document).ready(function(){
-    $("#content section").each(function(){
+    $("#homepage section").each(function(){
         if($(this).height() < $(window).height()){
             $(this).height($(window).height());
         }
