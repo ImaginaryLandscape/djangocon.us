@@ -17,8 +17,8 @@
     {% for release in featured_list %}
     <article>
     <h3>{{ release.title }}</h3>
-    <p class="teaser">{{ release.teaser }}</p>
-    <p><a href="{{ release.get_absolute_url }}">Read more</a></p>
+    <p class="teaser">{{ release.teaser }}<br />
+      <a href="{{ release.get_absolute_url }}">Read more</a></p>
     </article>
     {% endfor %}
   </div>
@@ -27,14 +27,14 @@
   {% load sponsorship_tags %}
   {% load thumbnail %}
   {% sponsor_levels as levels %}
-  <h2>Sponsors</h2>
+  <h2><a href="{% url sponsor_list %}">Sponsors</a></h2>
   <div class="sponsor-list">
     {% for level in levels %}
       {% if level.sponsors %}
         <h3>{{ level.name }}</h3>
         {% for sponsor in level.sponsors %}
         <div>
-          <a href="{{ sponsor.external_url }}"><img src="{% thumbnail sponsor.website_logo '100x60' %}" alt="{{ sponsor.name }}" /></a>
+          <a href="{{ sponsor.external_url }}"><img src="{% thumbnail sponsor.website_logo '60x60' %}" alt="{{ sponsor.name }}" /></a>
         </div>
         {% endfor %}
       {% endif %}
@@ -59,14 +59,16 @@
   <script src="{% static "js/scrollToTop.js" %}"></script>
   <script>
   $(document).ready(function(){
-    $("#homepage section").each(function(){
+/*    $("#homepage section").each(function(){
         if($(this).height() < $(window).height()){
             $(this).height($(window).height());
         }
-    });
-    ScrollToTop.init();
-    $(window).resize(function(){
-//        ScrollToTop.init();
+      });
+*/      
+    ScrollToTop.init(function(){
+        if(window.location.hash.length > 1){
+            $(window).trigger('hashchange');
+        }
     });
   });
   </script>

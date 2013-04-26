@@ -5,12 +5,12 @@
 {% block body_base %}
     <div class="container-fluid">
         {% include "_messages.html" %}
-        <div class="row">
+        <div class="row-fluid">
             <div class="span2 columns">
                 {% block subnav %}
                 {% endblock %}
             </div>
-            <div class="span8 offset1 columns">
+            <div class="span8 columns">
                 {% block body %}
                 {% endblock %}
             </div>

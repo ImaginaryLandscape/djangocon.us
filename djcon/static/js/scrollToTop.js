@@ -54,11 +54,12 @@ var ScrollToTop = {
         $(window).bind('hashchange', function(e){
             e.preventDefault();
             if(window.location.hash.length > 1){
+              $("body").addClass('fixed-nav');            
               var target = window.location.hash.replace('page-', '');
                   $target = $(target);
               $('html, body').stop().animate({
-                  'scrollTop': $target.offset().top-navheight
-              }, 500, 'swing', function () {
+                  'scrollTop': $target.offset().top+navheight
+              }, 300, 'swing', function () {
                   console.log('hashchange animation - '+target);
               });
             } else {
@@ -69,14 +70,17 @@ var ScrollToTop = {
             e.preventDefault();
             window.location.hash = 'page-'+$(this).attr('href').replace('/#', '');
             if($(this).attr('href').length > 1){
-              $("body").addClass('fixed-nav');
+                $("body").addClass('fixed-nav');
             }
         });
     },                
-    init: function(){
+    init: function(callback){
         console.log('scroll init');
-        this.bindNavScroll();
         this.bindScrollLink();
+        this.bindNavScroll();
+        if (callback && typeof(callback) === "function") {
+            setTimeout(function(){callback();}, 1000);
+        }
     }
 }
 
