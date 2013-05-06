@@ -114,20 +114,6 @@ input, textarea {
     min-height: 100%;
     line-height: 1.4em;
     padding-top: 20px;
-    .content-box {
-      background: rgba(0,0,0,.05);
-      margin: 0 10% 40px;
-      padding: 30px 10% 20px;
-      text-shadow: 0 1px 2px rgba(255,255,255,.8);
-      h1, h2, h3 {
-        padding: .5em 0 1em;
-        text-align: left;
-        text-shadow: none;
-        &:after {
-          background: none;
-        }
-      }
-    }
     h3 {
       font-size: 28px;
     }
@@ -141,6 +127,30 @@ input, textarea {
       opacity: .6;
       height: 46px;
     }
+  }
+  .content-box, #content {
+    background: rgba(0,0,0,.05);
+    margin: 0 10% 40px;
+    padding: 30px 10% 20px;
+    text-shadow: 0 1px 2px rgba(255,255,255,.8);
+    h1, h2, h3 {
+      padding: .5em 0 1em;
+      text-align: left;
+      text-shadow: none;
+      &:after {
+        background: none;
+      }
+    }
+  }
+  #content {
+    margin-top: 40px;
+    h1 {
+      text-align: center;
+      padding-bottom: .5em;
+    }
+  }
+  section.subnav #content {
+    padding: 30px 4% 20px;
   }
   p {
     margin-bottom: 1.5em;
@@ -172,11 +182,32 @@ input, textarea {
     }
   }
 }
+#news-content {
+  h2 {
+    font-size: 1.8em!important;
+    margin-bottom: .4em;
+    padding: 0!important;
+  }
+  .article-list-release-date {
+    font-size: .9em;
+  }
+}
 .sponsor-list {
   div {
     display: inline-block;
     margin-bottom: .5em;
   }
+}
+.list-sponsor {
+  margin-bottom: 1em;
+  h3 {
+    padding: .2em 0 0!important;
+  }
+}
+h2.sponsor-level {
+  border-top: 1px solid #bcbcbc;
+  margin-top: 1em;
+  padding: 1em 0 0!important;
 }
 #homepage {
   height: 100%;
@@ -212,6 +243,10 @@ form {
     color: #fff;
  }
 } 
+.dashboard-panel .dashboard-panel-header h3 {
+  color: inherit;
+  font-size: 20px;
+}
 .form-actions {
   background: none;
   border: none;

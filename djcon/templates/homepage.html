@@ -7,7 +7,8 @@
 
 {% block body_class %}home{% endblock %}
 
-{% block body_outer %}
+{% block body_base %}
+<div class="container">
 <div id="homepage">
 <section class="row-fluid">
   <div id="blog"class="span6">
@@ -51,6 +52,7 @@
 <section id="about"><h2>About</h2>{% box "about" %}</section>
 <section id="tutorials"><h2>Tutorials</h2>{% box "tutorials" %}</section>
 <section id="credits"><h2>Credits</h2>{% box "credits" %}</section>
+</div>
 </div>
 {% endblock %}
 

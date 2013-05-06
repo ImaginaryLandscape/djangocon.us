@@ -80,26 +80,27 @@
 {% endblock %}
 
 {% block body_base %}
-    <div class="container">
-      {% block body_outer %}
-        <section>
-        {% include "_messages.html" %}
+<div class="container">
+  <section class="{% block section_class %}{% endblock %}">
+  <div id="content">
+    {% block body_outer %}
+      {% include "_messages.html" %}
         
-        {# {% block breadcrumbs %} #}
-            {# {% sitetree_breadcrumbs from "main" %} #}
-        {# {% endblock %} #}
+      {# {% block breadcrumbs %} #}
+          {# {% sitetree_breadcrumbs from "main" %} #}
+      {# {% endblock %} #}
         
-            {% block body %}
-                <div id="content">
-                    {% block content %}{% endblock %}
-                    {% block sidebar %}
-                        {% include "_default_sidebar.html" %}
-                    {% endblock %}                    
-                </div>
-              {% endblock %}
-           </section>
-        {% endblock %}
-    </div>
+      {% block body %}
+        {% block content_title %}{% endblock %}
+        {% block content %}{% endblock %}
+        {% block sidebar %}
+          {% include "_default_sidebar.html" %}
+        {% endblock %}                    
+      {% endblock %}
+    {% endblock %}
+  </div>
+  </section>
+</div>
 {% endblock %}
 
 {% block footer %}
