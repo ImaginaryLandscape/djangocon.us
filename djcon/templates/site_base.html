@@ -7,6 +7,8 @@
 {% load static %}
 {% load compress %}
 
+{% block body_id %}djangocon{# Oh symposion, why do you make me set this? #}{% endblock %}
+
 {% block viewport %}
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 {% endblock %}
@@ -22,6 +24,12 @@
 {% endblock %}
 
 {% block extra_head_base %}
+
+    <!--[if lt IE 9]>
+    <script src="{{ STATIC_URL }}js/respond.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/ielt9.css">
+    <![endif]-->
+
     <link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.png" />
     <link rel="apple-touch-icon" href="{{ STATIC_URL }}img/logo-final-icon.png" />
     <script src="{% block jquery_src %}{% static "pinax/js/jquery.js" %}{% endblock %}"></script>
@@ -48,16 +56,7 @@
             <h2>September 2-7, 2013</h2>
         
             <ul class="nav">
-              <li class="register_tab"><a href="/#register">Register</a></li>
-              <li class="schedule_tab"><a href="/#schedule">Schedule</a></li>
-              <li class="venue_tab"><a href="/#venue">Venue</a></li>
-              <li class="lightning_tab"><a href="/#lightning-talks">Lightning Talks</a></li>
-              <li class="sprints_tab"><a href="/#sprints">Sprints</a></li>
-              <li class="openspaces_tab"><a href="/#open-spaces">Open Spaces</a></li>
-              <li class="about_tab"><a href="/#about">About</a></li>
-              <li class="tutorials_tab"><a href="/#tutorials">Tutorials</a></li>
-              <li class="credits_tab"><a href="/#credits">Credits</a></li>
-
+              {% sitetree_tree from "main_nav" template "sitetrees/main_nav.html" %}
               <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <span class="caret"></span></a>
                 <ul class="dropdown-menu">            
               {% if not request.user.is_authenticated %}
