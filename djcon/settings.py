@@ -8,7 +8,7 @@ PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__)))
 PACKAGE_ROOT = os.path.abspath(os.path.dirname(__file__))
 DEPLOYMENT_ROOT = os.path.join(PROJECT_ROOT, '..', '..', '..')
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 DEFAULT_FROM_EMAIL = "webmaster@djangocon.us"
@@ -190,6 +190,8 @@ INSTALLED_APPS = [
     "symposion.cms",
     "symposion.boxes",
     "symposion.proposals",
+    "symposion.reviews",
+    "symposion.schedule",        
     "symposion.speakers",
     "symposion.teams",
     
