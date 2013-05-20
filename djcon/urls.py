@@ -2,6 +2,8 @@ from django.conf import settings
 from django.conf.urls.defaults import *
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from djcon.sitemaps import *
+
 
 from django.views.generic.simple import direct_to_template
 
@@ -9,6 +11,11 @@ from django.contrib import admin
 admin.autodiscover()
 
 import symposion.views
+
+sitemaps = {
+    'views': ViewSitemap,
+    'cms': CMSSitemap,
+}
 
 # from pinax.apps.account.openid_consumer import PinaxConsumer
 
@@ -36,6 +43,8 @@ urlpatterns = patterns("",
     url(r'^galleries/', include('photologueext.urls')),
     url(r"^wiki/", include("wakawaka.urls")),
     url(r"^newscenter/", include("newscenter.urls")),    
+    (r'^robots\.txt$', include('robots.urls')),
+    (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
     url(r"^", include("symposion.cms.urls")),
 )
 

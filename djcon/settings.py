@@ -38,6 +38,7 @@ INTERNAL_IPS = [
 
 ADMINS = [
     ("Dustin Lacewell", "dlacewell@imagescape.com"),
+    ("Errors", "errors+djangocon@imagescape.com"),
 ]
 
 MANAGERS = ADMINS
@@ -179,6 +180,7 @@ INSTALLED_APPS = [
     "photologueext",
     "photologue",
     "filer",
+    "robots",
 #    "wakawaka",
     "newscenter",
     "tinymce",
