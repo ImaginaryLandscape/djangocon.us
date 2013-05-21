@@ -11,35 +11,36 @@
 <div class="container">
 <div id="homepage">
 <section class="row-fluid">
-  <div id="blog" class="span6">
+  <div id="blog" class="span5">
     {% load newscenter_tags %}
     {% get_news "blog" %}
-    <h2><a href="{{ newsroom.get_absolute_url }}">Blog</a></h2>
+    <h2><a href="{{ newsroom.get_absolute_url }}">Latest News</a></h2>
+    <div id="blog-articles">
     {% for release in featured_list %}
     <article>
-    <h3>{{ release.title }}</h3>
+    <h3><a href="{{ release.get_absolute_url }}">{{ release.title }}</a></h3>
     <p class="teaser">{{ release.teaser }}<br />
       <a href="{{ release.get_absolute_url }}">Read more</a></p>
     </article>
     {% endfor %}
+    </div>
   </div>
 
-  <div id="sponsors" class="span6">
+  <div id="sponsors" class="span7">
   {% load sponsorship_tags %}
   {% load thumbnail %}
-  {% sponsor_levels as levels %}
+  {% sponsors as sponsors %}
     <h2><a href="{% url sponsor_list %}">Sponsors</a></h2>
     <div class="sponsor-list">
-      {% for level in levels %}
-        {% if level.sponsors %}
-          <h3>{{ level.name }}</h3>
-          {% for sponsor in level.sponsors %}
-          <div>
-            <a href="{{ sponsor.external_url }}"><img src="{% thumbnail sponsor.website_logo '60x60' %}" alt="{{ sponsor.name }}" /></a>
-          </div>
-          {% endfor %}
-        {% endif %}
-    {% endfor %}
+      <div class="group">
+        {% for sponsor in sponsors %}
+        <div class="sponsor">
+          <a href="{{ sponsor.external_url }}"><img src="{% thumbnail sponsor.website_logo '160x120' crop='smart' %}" alt="{{ sponsor.name }}" /></a>
+          <p>{{ sponsor.level }}</p>
+        </div>
+        {% if forloop.counter|divisibleby:"6" and not forloop.last %}</div><div class="group">{% endif %}
+      {% endfor %}
+      </div>
     </div>
   </div>
 </section>
@@ -58,6 +59,7 @@
 {% endblock %}
 
 {% block extra_script %}
+  <script src="{% static "js/jquery.carouFredSel-6.2.0-packed.js" %}"></script>
   <script src="{% static "js/jquery.ba-throttle-debounce.js" %}"></script>
   <script src="{% static "js/scrollToTop.js" %}"></script>
   <script>
@@ -67,7 +69,24 @@
             $(this).height($(window).height());
         }
       });
-*/      
+      */     
+   $(".sponsor-list").carouFredSel({
+//        cookie: true,
+        responsive: true,
+        auto: 6000,
+        items: {
+            visible: 1
+        },
+        swipe: {
+            onMouse: true,
+            onTouch: true
+        },
+        scroll: {
+            fx: "fade",
+            duration: 800,
+            pauseOnHover: true
+        }
+    });      
     ScrollToTop.init(function(){
         if(window.location.hash.length > 1){
             $(window).trigger('hashchange');

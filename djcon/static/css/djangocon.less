@@ -71,7 +71,7 @@ body {
 h1, h2, h3 {
   text-transform: uppercase;
 }
-h1, h2, h3, h4 {
+h1, #homepage h2 {
   font-family: @hd-font;
   letter-spacing: 1px;
   font-weight: normal!important;
@@ -82,14 +82,14 @@ h4, h5, h6 {
 h4 {
   color: #7486a7;
   color: rgba(84,112,164,.75);
-  font-size: 1.4em;
+  font-size: 1.2em;
 }
 h5 {
   color: #787878;
-  font-size: 1.2em;
+  font-size: 1.1em;
 }
 h6 {
-  font-size: 1.15em;
+  font-size: 1.05em;
 }
 input, textarea {
   border: 1px solid #999!important;
@@ -133,7 +133,10 @@ input, textarea {
     line-height: 1.4em;
     padding-top: 20px;
     h3 {
-      font-size: 28px;
+      font-size: 21px;
+    }
+    ul {
+      margin-bottom: 1.5em;
     }
     &:before {
       background: url('../img/chi-stars.png') no-repeat center;
@@ -175,7 +178,7 @@ input, textarea {
   p {
     margin-bottom: 1.5em;
   }
-  h1, h2, legend {
+  h1, #homepage h2, legend {
     border: none;
     color: @body-color;
     font-size: 54px;
@@ -223,10 +226,46 @@ input, textarea {
     font-size: .9em;
   }
 }
+#blog-articles {
+  background: rgba(102,102,102,.3);
+  padding: 10px 20px;
+  article {
+    h3 {
+      font-size: 18px;
+      a {
+        color: inherit;
+      }
+    }
+    border-bottom: 1px solid #999;
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
 .sponsor-list {
+  text-align: left;
   div {
     display: inline-block;
     margin-bottom: .5em;
+    a {
+      background: rgba(102,102,102,.3);
+      border: 1px solid #ccc;
+      display: inline-block;
+      height: 120px;
+      line-height: 120px;
+      margin: 0 6px 2px;
+      padding: 6px;
+      text-align: center;
+      width: 160px;
+      &:hover, &:focus {
+        background: rgba(84, 112, 164, 0.75);
+      }
+    }
+    p {
+      font-size: .9em;
+      text-align: center;
+    }
   }
 }
 .list-sponsor {
@@ -365,10 +404,13 @@ form {
       display: block;
       margin-bottom: .5em;
       a {
+        color: #333;
+        color: rgba(51,51,51,.8);
         display: block;
         height: auto;
         line-height: normal;
         padding: .1em;
+        text-shadow: none;
       }
     }
   }

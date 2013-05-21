@@ -3,8 +3,8 @@ var ScrollToTop = {
         var complete = false;
         $("html, body").animate(
             { scrollTop: "0" },
-            300,
-            'swing',
+            600,
+            'linear',
             function(){
                 window.location.hash = '';
                 $("#masthead .nav").slideDown();
@@ -59,7 +59,7 @@ var ScrollToTop = {
                   $target = $(target);
               $('html, body').stop().animate({
                   'scrollTop': $target.offset().top+navheight
-              }, 300, 'swing', function () {
+              }, 600, 'linear', function () {
                   console.log('hashchange animation - '+target);
               });
             } else {
