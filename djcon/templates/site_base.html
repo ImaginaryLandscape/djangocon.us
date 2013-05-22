@@ -82,6 +82,7 @@
 <div class="container">
   <section class="{% block section_class %}{% endblock %}">
   <div id="content">
+    {% block page_title %}{% endblock %}
     {% block body_outer %}
       {% include "_messages.html" %}
         

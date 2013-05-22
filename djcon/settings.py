@@ -140,6 +140,7 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     "django.core.context_processors.tz",
     "django.core.context_processors.request",
     "django.contrib.messages.context_processors.messages",
+    "symposion.reviews.context_processors.reviews",    
     "pinax_utils.context_processors.settings",
     "account.context_processors.account",
     "photologueext.context_processors.media",

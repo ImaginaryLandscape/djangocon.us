@@ -77,12 +77,11 @@ h1, #homepage h2 {
   font-weight: normal!important;
 }
 h4, h5, h6 {
-  margin: .5em 0 1em;
+  margin: .2em 0 1em;
 }
 h4 {
-  color: #7486a7;
-  color: rgba(84,112,164,.75);
   font-size: 1.2em;
+  font-weight: normal;
 }
 h5 {
   color: #787878;
@@ -94,6 +93,22 @@ h6 {
 input, textarea {
   border: 1px solid #999!important;
 }
+a {
+  color: #7486A7;
+  &:hover, &:focus {
+    color: #6a7485;
+  }
+}
+dl {
+  margin: 1em;
+  dd, dt {
+    padding: .2em .5em;
+  }
+  dd {
+    margin-bottom: .5em;
+  }
+}
+
 #masthead {
   .clearfix;
   .rgbabg(#3d2d2d,.82); // background: rgba(61,45,45,.82);
@@ -178,7 +193,15 @@ input, textarea {
   p {
     margin-bottom: 1.5em;
   }
-  h1, #homepage h2, legend {
+  #content .span9 h1 {
+    font-family: verdana, arial, sans-serif;
+    font-size: 24px;
+    font-weight: bold!important;
+    padding: 0.5em 0 1em;
+    text-align: left;
+    text-shadow: none;
+  }
+  #content > h1, #homepage h2, legend {
     border: none;
     color: @body-color;
     font-size: 54px;
@@ -275,9 +298,10 @@ input, textarea {
   }
 }
 h2.sponsor-level {
+  background: rgba(0,0,0,.1);
   border-top: 1px solid #bcbcbc;
-  margin-top: 1em;
-  padding: 1em 0 0!important;
+  margin: 1em 0;
+  padding: .1em .3em!important;
 }
 #homepage {
   height: 100%;
@@ -325,7 +349,7 @@ form {
 .edit-toggle {
   z-index: 100;
 }
-.nav {
+#masthead .nav {
   .rgbabg(white,.25);
   display: table;
   font-family: @hd-font;
@@ -385,27 +409,32 @@ form {
       text-align: right;
       a {
         color: @body-color!important;
+        &:hover, &:focus {
+          color: #fff!important;
+        }
       }
     }
     .caret {
       margin-top: 18px;
     }
   }
+}
+.nav {
   .nav-header {
     color: @body-color;
-    font-size: 28px;
-    font-weight: normal;
-    margin: 1em 0!important;
+    font-size: 16px;
+    margin: .5em 0;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: left;
     text-shadow: none!important;
   }
-  &.nav-list {
+  .nav-list {
     padding: 0;
     li {
       display: block;
       margin-bottom: .5em;
       a {
-        color: #333;
-        color: rgba(51,51,51,.8);
         display: block;
         height: auto;
         line-height: normal;
@@ -427,7 +456,7 @@ body.fixed-nav {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 2;
+    z-index: 101;
     #home-link {
       display: inline-block!important;
     }    
