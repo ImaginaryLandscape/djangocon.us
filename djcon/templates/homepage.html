@@ -45,6 +45,7 @@
   </div>
 </section>
 
+{% comment %}
 <section id="register"><h2>Register</h2>{% box "register" %}</section>
 <section id="schedule"><h2>Schedule</h2>{% box "schedule" %}</section>
 <section id="venue"><h2>Venue</h2>{% box "venue" %}</section>
@@ -54,24 +55,34 @@
 <section id="about"><h2>About</h2>{% box "about" %}</section>
 <section id="tutorials"><h2>Tutorials</h2>{% box "tutorials" %}</section>
 <section id="credits"><h2>Credits</h2>{% box "credits" %}</section>
+{% endcomment %}
+
 </div>
 </div>
 {% endblock %}
 
 {% block extra_script %}
   <script src="{% static "js/jquery.carouFredSel-6.2.0-packed.js" %}"></script>
+  {% comment %}
   <script src="{% static "js/jquery.ba-throttle-debounce.js" %}"></script>
   <script src="{% static "js/scrollToTop.js" %}"></script>
+  {% endcomment %}
   <script>
   $(document).ready(function(){
-/*    $("#homepage section").each(function(){
+/*
+    $("#homepage section").each(function(){
         if($(this).height() < $(window).height()){
             $(this).height($(window).height());
         }
-      });
-      */     
-   $(".sponsor-list").carouFredSel({
-//        cookie: true,
+    });
+           
+    ScrollToTop.init(function(){
+        if(window.location.hash.length > 1){
+            $(window).trigger('hashchange');
+        }
+    });
+*/
+    $(".sponsor-list").carouFredSel({
         responsive: true,
         auto: 6000,
         items: {
@@ -86,12 +97,7 @@
             duration: 800,
             pauseOnHover: true
         }
-    });      
-    ScrollToTop.init(function(){
-        if(window.location.hash.length > 1){
-            $(window).trigger('hashchange');
-        }
-    });
+    });        
   });
   </script>
 {% endblock %}
