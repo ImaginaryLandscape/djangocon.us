@@ -66,7 +66,10 @@ body {
   font-family: verdana, arial, sans-serif;
   font-size: 15px;
   height: 100%;
-  padding: 0;
+  padding:  0;
+}
+h1, h2, h3, h4, h5, h6, legend {
+  font-family: helvetica, arial, sans-serif;
 }
 h1, h2, h3 {
   text-transform: uppercase;
@@ -201,7 +204,7 @@ dl {
     text-align: left;
     text-shadow: none;
   }
-  #content > h1, #homepage h2, legend {
+  #content > h1, #news-content > h1, #homepage h2, legend {
     border: none;
     color: @body-color;
     font-size: 54px;
@@ -239,7 +242,7 @@ dl {
   }
   #article-teaser {
     font-size: 16px!important;
-    margin: -2em 0 2em!important;
+    margin: -1em 0 2em!important;
   }
   .date {
     float: left;
@@ -253,6 +256,7 @@ dl {
   background: rgba(102,102,102,.3);
   padding: 10px 20px;
   article {
+    margin-top: 1em;
     h3 {
       font-size: 18px;
       a {
@@ -302,6 +306,11 @@ h2.sponsor-level {
   border-top: 1px solid #bcbcbc;
   margin: 1em 0;
   padding: .1em .3em!important;
+}
+#proposal-detail {
+  h2 {
+    padding: 0!important;
+  }
 }
 #homepage {
   height: 100%;
@@ -451,30 +460,32 @@ form {
   background: none;
 }
 body.fixed-nav {
-  .nav {
-    .rgbabg(#584545,.9);
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 101;
-    #home-link {
-      display: inline-block!important;
-    }    
-    > li {
-      > a {
-        color: #efefef;
-        color: rgba(255, 255, 255, 0.85);
-        text-shadow: 0 1px 1px rgba(0,0,0,.8);
-      }
-      > a:hover, > a:focus, &.open > a {
-          color: #333;
-          color: rgba(51,51,51,.85);
-          text-shadow: 0 1px 1px rgba(255,255,255,.8);
-      }
-      > a.selected {
-        color: #b07f7e;
-        color: rgba(123, 84, 83, 0.75);
-        text-shadow: 0 1px 1px #fff;
+  #masthead {
+    .nav {
+      .rgbabg(#584545,.9);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 101;
+      #home-link {
+        display: inline-block!important;
+      }    
+      > li {
+        > a {
+          color: #efefef;
+          color: rgba(255, 255, 255, 0.85);
+          text-shadow: 0 1px 1px rgba(0,0,0,.8);
+        }
+        > a:hover, > a:focus, &.open > a {
+            color: #333;
+            color: rgba(51,51,51,.85);
+            text-shadow: 0 1px 1px rgba(255,255,255,.8);
+        }
+        > a.selected {
+          color: #b07f7e;
+          color: rgba(123, 84, 83, 0.75);
+          text-shadow: 0 1px 1px #fff;
+        }
       }
     }
   }
