@@ -26,7 +26,7 @@
 
 @hd-font: 'franchise', fantasy, 'Trebuchet MS', sans-serif;
 @background-color-white: rgba(255,255,255,.85);
-@body-color: #565656;
+@body-color: #555;
 
 .rgbabg(@colour, @alpha) {
   @alphaColour: hsla(hue(@colour), saturation(@colour), lightness(@colour), @alpha);
@@ -96,6 +96,7 @@ input, textarea {
 }
 a {
   color: #7486A7;
+  color: darkgoldenrod;
   &:hover, &:focus {
     color: #6a7485;
   }
@@ -112,7 +113,7 @@ dl {
 
 #masthead {
   .clearfix;
-  .rgbabg(#3d2d2d,.82); // background: rgba(61,45,45,.82);
+  .rgbabg(lightslategrey,.82); // background: rgba(61,45,45,.82);
   color: #ebd5d3;
   margin: 0 0;
   padding: 2% 0 0;
@@ -139,7 +140,8 @@ dl {
   padding: 0;
   width: 100%;
   section {
-    .rgbabg(white,.5);
+//    .rgbabg(white,.5);
+    background: #fff;
     border-style: solid;
     border-width: 0 0 1px;
     border-color: #dedede;
@@ -155,18 +157,19 @@ dl {
     &:before {
       background: url('../img/chi-stars.png') no-repeat center;
       background-size: contain;
-      border-width: 4px 0 4px;
+//      border-width: 4px 0 4px;
+      border-width: 0;
       border-style: solid;
       border-color: #7e8ba4;
       border-color: rgba(84,112,164,.75);
       display: block;
       content: "";
-      opacity: .6;
+      opacity: .8;
       height: 46px;
     }
   }
   .content-box, #content {
-    .rgbabg(black,.05);
+    .rgbabg(#778899,.3);
     margin: 0 10% 40px;
     padding: 30px 10% 20px;
     text-shadow: 0 1px 2px rgba(255,255,255,.8);
@@ -202,7 +205,7 @@ dl {
   }
   #content > h1, #news-content > h1, #homepage h2, legend {
     border: none;
-    color: @body-color;
+    color: teal;
     font-size: 54px;
     font-family: @hd-font;
     letter-spacing: 1px;
@@ -210,7 +213,7 @@ dl {
     margin-bottom: 1em;
     padding: 30px 1% 1%;
     text-align: center;
-    text-shadow: 0 1px 2px rgba(255,255,255,.8);
+    text-shadow: 0 2px 3px rgba(255,255,255,.8);
     text-transform: uppercase;    
     &:after {
       .rgbabg(white,.1);
@@ -221,7 +224,7 @@ dl {
       width: 60%;
     }
     a {
-      color: @body-color;
+      color: teal;
       display: inline-block;
       text-decoration: none!important;
     }
@@ -385,15 +388,16 @@ form {
     vertical-align: middle;
     > a {
       color: #fff;
-      color: rgba(255,255,255, .85);
+//      color: rgba(255,255,255, .85);
       display: table-cell;
       border-radius: 0;      
+      font-size: 24px;
       height: 42px;
       line-height: 42px;
       margin: 0;
       outline: none;
       padding: 0 6px; 
-      text-shadow: 0 1px 1px rgba(0,0,0,.8);
+//      text-shadow: 0 1px 1px rgba(0,0,0,.8);
     }
     > a:hover, > a:focus, &.open > a {
       color: #333;
