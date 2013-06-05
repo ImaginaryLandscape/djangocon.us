@@ -182,7 +182,7 @@ INSTALLED_APPS = [
     "photologue",
     "filer",
     "robots",
-#    "wakawaka",
+    "wakawaka",
     "newscenter",
     "tinymce",
     
@@ -257,8 +257,8 @@ DEBUG_TOOLBAR_CONFIG = {
 WAKAWAKA_DEFAULT_INDEX = "index"
 WAKAWAKA_SLUG_REGEX = r"((\w{2,})(/\w{2,})*)" # allow lower case wiki page names
 WAKAWAKA_LOCK_TIMEOUT = 10*60
-
-MARKITUP_FILTER = ("markdown.markdown", {"safe_mode": True})
+MARKITUP_FILTER = ("markdown.markdown", {"extensions": ["extra"], "safe_mode": True})
+#MARKITUP_FILTER = ("markdown.markdown", {"safe_mode": True})
 MARKITUP_SET = "markitup/sets/markdown"
 MARKITUP_SKIN = "markitup/skins/simple"
 
