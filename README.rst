@@ -96,9 +96,3 @@ Create a proposal type (@@@ change once upgraded to newer symposion)::
 
     >>> from symposion.proposals.models import ProposalKind
     >>> ProposalKind.objects.create(name="Test")
-
-Issues
-======
-
-If you find an issue with this code base you are welcome to email us at
-development@eldarion.com.
