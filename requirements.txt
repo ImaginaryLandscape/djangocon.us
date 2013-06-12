@@ -32,7 +32,6 @@ easy-thumbnails==1.1
 feedparser==5.1.3
 gunicorn==0.17.2
 imagestore==2.7.3
--e git+git@git.imagescape.com:iscapeauth@d099ae7707db2030d4d9a762b20ca22c9c84fed5#egg=iscapeauth-dev
 -e git+git@github.com:imagescape/iscape-photologue-extensions@2fc80f4be62fd84bede70bc68a94f4ba23fa9293#egg=iscapephotologue-dev
 metron==0.1
 newscenter==1.0.3
