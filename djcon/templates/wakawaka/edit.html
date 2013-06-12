@@ -2,7 +2,7 @@
 
 {% load i18n %}
 {% load markitup_tags %}
-
+{% load url from future %}
 {% block body_class %}{{ page.slug }}{% endblock %}
 
 {% block extra_body_base %}
@@ -41,7 +41,7 @@
 			{% if page.is_initial %}
 				javascript:window.history.go(-1);
 			{% else %}
-				{% url wakawaka_page slug=page.slug %}
+				{% url 'wakawaka_page' slug=page.slug %}
 			{% endif %}
 			">{% trans "Cancel" %}</a>
 		</p>
