@@ -12,6 +12,7 @@
 	</ul>
 	{% endif %}
 
+  {% comment %}
 	<div class="info">
 		<span>
 			<a href="{% url wakawaka_index %}">{% trans "Start" %}</a>
@@ -22,7 +23,8 @@
 		<span>
 			<a href="{% url wakawaka_page_list %}">{% trans "All Pages" %}</a>
 		</span>
-	</div>
+  </div>
+  {% endcomment %}
 
 	{% block content %}
   {% endblock %}
