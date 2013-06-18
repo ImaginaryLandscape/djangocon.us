@@ -284,17 +284,19 @@ table.history {
 }
 
 .sponsor-list {
+  .clearfix;
   text-align: left;
   div {
     display: inline-block;
     margin-bottom: .5em;
+    vertical-align: top;
     a {
       background: rgba(102,102,102,.3);
       border: 1px solid #ccc;
       display: inline-block;
       height: 120px;
       line-height: 120px;
-      margin: 0 6px 2px;
+      margin: 0 12px 2px;
       padding: 6px;
       text-align: center;
       width: 160px;
@@ -305,6 +307,10 @@ table.history {
     p {
       font-size: .9em;
       text-align: center;
+    }
+    &.group {
+      min-height: 360px;
+      padding: 0 16px;
     }
   }
 }
