@@ -159,6 +159,7 @@ INSTALLED_APPS = [
     "django.contrib.humanize",
     
     'gunicorn',
+    'dbbackup',
 
     # theme
     "pinax_theme_bootstrap_account",
