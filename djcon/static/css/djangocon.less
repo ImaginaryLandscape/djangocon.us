@@ -282,7 +282,17 @@ table.history {
     }
   }
 }
-
+#homepage-container {
+  max-width: 1024px;
+}
+#blog {
+  float: left;
+}
+#sponsors {
+  float: right;
+  max-width: 720px;
+  overflow: hidden;
+}
 .sponsor-list {
   .clearfix;
   text-align: left;
@@ -309,8 +319,9 @@ table.history {
       text-align: center;
     }
     &.group {
-      min-height: 360px;
-      padding: 0 16px;
+      min-height: 400px;
+      padding: 0;
+      max-width: 100%;
     }
   }
 }
@@ -332,11 +343,16 @@ h2.sponsor-level {
   }
 }
 #homepage {
+  .gradient-image(@background-color-white, @background-color-white, '../img/gehry-lt.jpg');
+  background-size: cover!important;
+
   section {
+    background-color: transparent;
     background-size: cover!important;
+    margin: 0 auto;
+    max-width: 1280px;
     padding-top: 100px;    
     &:first-child {
-      .gradient-image(@background-color-white, @background-color-white, '../img/gehry-lt.jpg'); 
       margin-bottom: 0;
       padding-top: 20px;
       > div {
