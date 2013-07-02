@@ -40,9 +40,7 @@ INTERNAL_IPS = [
 ]
 
 ADMINS = [
-#    ("Dustin Lacewell", "dlacewell@imagescape.com"),
-    ("David Bertrand", "dbertrand@imagescape.com"),
-#    ("Errors", "errors+djangocon@imagescape.com"),
+    ("Errors", "errors+djangocon@imagescape.com"),
 ]
 
 MANAGERS = ADMINS
