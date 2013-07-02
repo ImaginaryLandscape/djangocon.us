@@ -1,0 +1,8 @@
+   Dear {{name|safe}},
+   Thank you for contacting us at {{ site.name }} with the following message:
+   {{ message|safe }}
+
+   Somebody will respond to you shortly.
+
+--
+You received this message because you contacted us at {{ site.name }}.

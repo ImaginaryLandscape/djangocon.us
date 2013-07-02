@@ -1,0 +1,15 @@
+{% with request.contact_form as form %}
+
+{% if not form.submit_success %}
+<form id="mw-contact" action="." method="post" class="contact">{% csrf_token %}
+<div id="mw-contact-fields">
+{{ form }}
+</div>
+<button id="mw-contact-submit">Send Message <span class="click">Click</span></button>
+</form>
+{% else %}
+<p>Your message has been sent.</p>
+<p>Thank you for contacting us.</p>
+{% endif %}
+
+{% endwith %}

@@ -1,0 +1,11 @@
+{{ contact_name|safe }} has posted the following message at {{ site.name }}:
+
+   {{ contact_message|safe }}
+
+   Email: {{ contact_email|default:"not provided" }}
+   Phone: {{ phone|default:"not provided" }}
+   {% if contact_submit_path %}
+   This form was submitted from the path: {{ contact_submit_path }}
+   {% endif %}
+
+You received this message because you are an administrator of the Contact Form at {{ site.name }}.

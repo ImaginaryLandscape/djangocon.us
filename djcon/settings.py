@@ -11,6 +11,9 @@ DEPLOYMENT_ROOT = os.path.join(PROJECT_ROOT, '..', '..', '..')
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
+SERVER_EMAIL = 'no-reply@djangocon.us'
+EMAIL_SUBJECT_PREFIX = '[Djangocon] '
+
 DEFAULT_FROM_EMAIL = "webmaster@djangocon.us"
 
 CONTACT_EMAIL = "djangocon@holdenweb.com"
@@ -37,8 +40,9 @@ INTERNAL_IPS = [
 ]
 
 ADMINS = [
-    ("Dustin Lacewell", "dlacewell@imagescape.com"),
-    ("Errors", "errors+djangocon@imagescape.com"),
+#    ("Dustin Lacewell", "dlacewell@imagescape.com"),
+    ("David Bertrand", "dbertrand@imagescape.com"),
+#    ("Errors", "errors+djangocon@imagescape.com"),
 ]
 
 MANAGERS = ADMINS
@@ -200,6 +204,7 @@ INSTALLED_APPS = [
     
     # project
     "djcon.proposals",
+    "djcon.contact",
 ]
 
 PHOTOLOGUEEXT_DISABLE_WATERMARKS = True
@@ -253,6 +258,8 @@ EMAIL_DEBUG = DEBUG
 DEBUG_TOOLBAR_CONFIG = {
     "INTERCEPT_REDIRECTS": False,
 }
+
+CONTACT_CAPTCHA = False
 
 WAKAWAKA_DEFAULT_INDEX = "index"
 WAKAWAKA_SLUG_REGEX = r"((\w{2,})(/\w{2,})*)" # allow lower case wiki page names

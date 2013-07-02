@@ -1,0 +1,18 @@
+{% extends "base.html"%}
+
+{% load bootstrap_tags %}
+{% block title %}Contact Us {{ block.super }}{% endblock %}
+
+{% block content%}
+<h1>Contact Us</h1>
+
+<p><span style="color:red" class="required">*</span> indicates a required field</p>
+
+<form id="contactform" class="form-horizontal" method="post" action="">{% csrf_token %}
+  {{ form|as_bootstrap }}
+  <div class="form-actions">
+    <input class="btn btn-primary" type="submit" value="Submit" />
+  </div>
+</form>
+
+{% endblock%}
