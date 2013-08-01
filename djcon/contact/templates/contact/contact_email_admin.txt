@@ -3,7 +3,7 @@
    {{ contact_message|safe }}
 
    Email: {{ contact_email|default:"not provided" }}
-   Phone: {{ phone|default:"not provided" }}
+   Phone: {{ contact_phone|default:"not provided" }}
    {% if contact_submit_path %}
    This form was submitted from the path: {{ contact_submit_path }}
    {% endif %}

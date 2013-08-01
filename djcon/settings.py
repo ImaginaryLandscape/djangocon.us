@@ -11,7 +11,7 @@ DEPLOYMENT_ROOT = os.path.join(PROJECT_ROOT, '..', '..', '..')
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
-SERVER_EMAIL = 'no-reply@djangocon.us'
+SERVER_EMAIL = 'webmaster@djangocon.us'
 EMAIL_SUBJECT_PREFIX = '[Djangocon] '
 
 DEFAULT_FROM_EMAIL = "webmaster@djangocon.us"
@@ -43,7 +43,9 @@ ADMINS = [
     ("Errors", "errors+djangocon@imagescape.com"),
 ]
 
-MANAGERS = ADMINS
+MANAGERS = (
+    ("Open Bastion", 'info@theopenbastion.com'),
+)
 
 DATABASES = {
     "default": {

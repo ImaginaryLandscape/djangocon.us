@@ -16,10 +16,22 @@ def email_all(request, form):
     # getting e-mail messages from according templates
     msg_admin = loader.render_to_string(template_admin, context)
     msg_sender = loader.render_to_string(template_sender, context).strip()
+    sender_email = request.POST.get('contact_email', '')
+    sender_name = request.POST.get('contact_name', '')    
+    from_email = getattr(settings, 'SERVER_EMAIL', 'webmaster@djangocon.us')
+    email_subject_prefix = getattr(settings, 'EMAIL_SUBJECT_PREFIX', '')
+    recipients = getattr(settings, 'MANAGERS', 'webmaster@djangocon.us')
+    if sender_name:
+        email_headers = {'Reply-To': "%s <%s>" % (sender_name, sender_email)}
+    else:
+        email_headers = {'Reply-To': sender_email}
     try:
-        mail_subject = form.cleaned_data['contact_subject']
+        mail_subject = '%s%s' % (email_subject_prefix, 
+            form.cleaned_data['contact_subject'])
     except:
-        mail_subject = getattr(settings, 'CONTACT_SUBJECT', 'New contact form at %s' % site)
-    # notify managers
-    mail_managers(mail_subject, msg_admin, True)
+        mail_subject = '%s%s' % (email_subject_prefix, getattr(
+            settings, 'CONTACT_SUBJECT', 'New contact form at %s' % site))
+    email = EmailMessage(mail_subject, msg_admin, from_email, [a[1] for a in recipients],
+        headers = email_headers)
+    email.send() 
     return
