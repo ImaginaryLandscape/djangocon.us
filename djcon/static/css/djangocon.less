@@ -26,7 +26,7 @@
 
 @hd-font: 'franchise', fantasy, 'Trebuchet MS', sans-serif;
 @background-color-white: rgba(255,255,255,.85);
-@body-color: #555;
+@body-color: #333;
 
 .rgbabg(@colour, @alpha) {
   @alphaColour: hsla(hue(@colour), saturation(@colour), lightness(@colour), @alpha);
@@ -169,10 +169,9 @@ dl {
     }
   }
   .content-box, #content {
-    .rgbabg(#778899,.3);
+    .rgbabg(#778899,.15);
     margin: 0 10% 40px;
     padding: 30px 10% 20px;
-    text-shadow: 0 1px 2px rgba(255,255,255,.8);
     h1, h2, h3 {
       padding: .5em 0 1em;
       text-align: left;
