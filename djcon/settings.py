@@ -40,8 +40,9 @@ INTERNAL_IPS = [
 ]
 
 ADMINS = [
-    ("Errors", "errors+djangocon@imagescape.com"),
+    ("Steven Holden", "steve@holdenweb.com"),
 ]
+
 
 MANAGERS = (
     ("Open Bastion", 'info@theopenbastion.com'),
